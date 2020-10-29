@@ -1,0 +1,227 @@
+@import "mq";
+
+.meta__numbers {
+  @include mq(leftCol) {
+    padding-right: 10px;
+  }
+}
+
+.element-atom,
+.interactive-atom {
+  margin: 0 !important;
+}
+
+.u-cf {
+  .content__meta-container,
+  .meta__extras {
+    margin-left: -10px;
+    margin-right: -10px;
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    @include mq(mobileLandscape) {
+      margin-right: -20px;
+      margin-left: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    @include mq(desktop) {
+      margin-right: -20px;
+      margin-left: -20px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    @include mq(leftCol) {
+      margin-left: -10px;
+      margin-right: -10px;
+      padding-left: 10px;
+      padding-right: 0px;
+    }
+  }
+  .meta__extras {
+    @include mq(desktop) {
+      margin-left: -10px;
+    }
+  }
+}
+
+.content__meta-container {
+  @include mq(desktop) {
+    width: 960px !important;
+  }
+  @include mq(wide) {
+    width: 1040px !important;
+  }
+}
+
+.content--interactive .content__headline,
+.headline {
+  &::before {
+    content: "";
+    display: block;
+    background-image: url("<%= path %>/assets/header-image.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 10px 0px;
+    height: 32vw;
+    padding-top: 5px;
+    margin-top: 10px;
+    @include mq(tablet) {
+      border-top: 0;
+      height: 285px;
+    }
+
+    @include mq(desktop) {
+      margin-left: -10px;
+      width: 970px;
+    }
+    @include mq(wide) {
+      width: 1050px;
+    }
+  }
+  &::after {
+    content: "";
+    width: calc(100% + 20px);
+    background-color: $neutral-86;
+    position: absolute;
+    height: 1px;
+    top: calc(32vw + 18px);
+    left: -10px;
+
+    @include mq(mobileLandscape) {
+      left: -20px;
+      width: calc(100% + 40px);
+    }
+
+    @include mq(tablet) {
+      top: 303px;
+    }
+    @include mq(desktop) {
+      width: 980px;
+    }
+    @include mq(leftCol) {
+      left: -10px;
+      width: 970px;
+    }
+    @include mq(wide) {
+      left: -10px;
+      width: 1050px;
+    }
+  }
+}
+
+.content--interactive .content__main-column .content__headline {
+  @include fs-titlepiece(1);
+  font-size: 32px;
+  line-height: 36px;
+  position: relative;
+  @include mq(mobileLandscape) {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  @include mq(tablet) {
+    font-size: 50px;
+    line-height: 54px;
+  }
+
+  @include mq(leftCol) {
+    font-size: 70px;
+    line-height: 76px;
+  }
+}
+
+.content__standfirst,
+.standfirst {
+  font-weight: 200;
+  line-height: 28px;
+  font-size: 22px;
+  margin-top: 24px;
+  max-width: 90%;
+  margin-bottom: 72px;
+  @include mq(mobileLandscape) {
+    max-width: 80%;
+  }
+  @include mq(tablet) {
+    max-width: 540px;
+  }
+  @include mq(desktop) {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
+
+.l-side-margins::before,
+.l-side-margins::after {
+  z-index: 9999;
+}
+
+.content__main,
+.content__head {
+  position: relative;
+
+  &:before {
+    position: absolute;
+    top: 0;
+
+    height: 100%;
+    min-height: 500px;
+    content: " ";
+    border-left: 1px solid #dcdcdc;
+
+    @include mq(leftCol) {
+      left: calc((100% - 1140px) / 2 + 170px);
+    }
+
+    @include mq(wide) {
+      left: calc((100% - 1300px) / 2 + 250px);
+    }
+  }
+
+  .byline {
+    border-top: none !important;
+    margin-top: 5px;
+  }
+}
+
+a,
+.u-fauxlink {
+  color: #c70000;
+  cursor: pointer;
+  text-decoration: none;
+}
+.tonal--tone-news .tone-colour {
+  color: #c70000;
+}
+
+.content__meta-container {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #dcdcdc,
+    #dcdcdc 0.0625rem,
+    transparent 0.0625rem,
+    transparent 0.25rem
+  );
+  background-repeat: repeat-x;
+  background-position: top;
+  -webkit-background-size: 0.0625rem 0.8125rem;
+  background-size: 0.0625rem 0.8125rem;
+  padding-top: 12px;
+  border-top: none;
+}
+
+.ios,
+.android {
+  .article__header .headline {
+    padding: 4px 12px 30px 12px;
+  }
+  .standfirst {
+    margin-bottom: 20px;
+    margin-top: 0px;
+  }
+
+  .headline:after {
+    top: calc(32vw + 95px);
+  }
+}

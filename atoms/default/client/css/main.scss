@@ -1,0 +1,247 @@
+@import "mq";
+@import "fonts";
+@import "palette";
+@import "scrolly";
+@import "enhancer";
+@import "header";
+
+
+// Uncomment for embeds
+//@import "embed";
+// Uncomment for full screen (including immersive article main media)
+//@import "fullscreen";
+
+.element-atom,
+.interactive-atom {
+  margin: 0 !important;
+  background: none !important;
+  padding-bottom: 6px !important;
+  padding-top: 10px !important;
+}
+
+// .gs-container {
+//   @include mq(desktop) {
+//     padding-left: 0.14rem !important;
+//     padding-right: 0.14rem !important;
+//   }
+// }
+
+.scroll-inner {
+  background: #ffffff;
+}
+
+.interactive-wrapper {
+  max-width: 100%;
+}
+
+.gv-ticker {
+  background: #fff;
+  padding-bottom: 8px;
+  position: absolute;
+  top: 0;
+  margin-left: 0px;
+  display: flex;
+  justify-content: flex-start;
+  @include mq(mobile) {
+    width: 100vw;
+    height: 100px;
+  }
+  @include mq(desktop) {
+    width: 100%;
+    height: auto;
+  }
+  // max-width: 280px;
+  // height: 60px;
+  @include fs-textSans(3);
+  font-size: 11px;
+
+  @include mq(mobileLandscape) {
+    font-size: 14px;
+  }
+  @include mq(tablet) {
+    margin-left: -10px;
+  }
+
+  & div {
+    // width: 50%;
+  }
+
+  & > div {
+    padding-right: 8px;
+    padding-left: 8px;
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0px;
+      width: 1px;
+      height: calc(100% + 1px);
+      background-color: $neutral-86;
+      display: block;
+
+      @include mq(tablet) {
+        display: block;
+        height: calc(100% + 12px);
+      }
+    }
+  }
+
+  & > div:first-of-type {
+    width: 75px;
+    padding-right: 0px;
+    &:before {
+      display: none;
+      @include mq(tablet) {
+        display: block;
+      }
+    }
+    @include mq(mobileLandscape) {
+      width: 90px;
+    }
+    @include mq(tablet) {
+      width: 124px;
+    }
+  }
+  & > div:nth-of-type(2) {
+    width: 36%;
+  }
+
+  @include mq(desktop) {
+    max-width: 480px;
+    margin-bottom: 24px;
+    position: static;
+    // height: 100px;
+    // border-top: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+    border-bottom: 1px solid $neutral-86;
+    @include fs-titlepiece(1);
+    font-size: 32px;
+    line-height: 44px;
+    padding-bottom: 12px;
+  }
+
+  &__date {
+    font-weight: bold;
+    line-height: 36px;
+    @include fs-textSans(3);
+    font-size: 12px;
+    position: absolute;
+    line-height: 32px;
+
+    @include mq(mobileLandscape) {
+      font-size: 14px;
+    }
+
+    @include mq(tablet) {
+      line-height: 40px;
+    }
+  }
+}
+
+.gv-toll {
+  @include mq(mobile) {
+    @include fs-titlepiece(1);
+    font-size: 25px;
+    line-height: 24px;
+    // font-size: 32px;
+  }
+  @include mq(mobileLandscape) {
+    font-size: 30px;
+  }
+  @include mq(tablet) {
+    font-size: 38px;
+  }
+}
+
+.gv-ticker__cases {
+  color: $news-red;
+}
+.gv-ticker__recovered {
+  color: $feature-blue;
+}
+
+canvas {
+  @include mq(mobile) {
+    position: relative;
+    z-index: 9;
+    // left: -10px;
+    background: #fff;
+    margin: 0 auto;
+    margin-top: 50px;
+    // padding-left: 10px;
+  }
+  @include mq(mobileLandscape) {
+    margin-top: 52px;
+  }
+  @include mq(desktop) {
+    padding-left: 0px;
+    background: none;
+    margin-top: 0px;
+  }
+}
+
+.ios,
+.android {
+  .article {
+    overflow: visible !important;
+  }
+
+  .gv-ticker {
+    padding-top: 16px;
+    @include mq(mobile) {
+      height: 100px;
+    }
+    @include mq(tablet) {
+      height: auto;
+    }
+
+    & > div:nth-of-type(2) {
+      width: 40%;
+    }
+  }
+
+  canvas {
+    margin-top: 67px;
+  }
+}
+
+.inner-spacer {
+  height: 50px;
+  border: none !important;
+  background: #fff;
+  position: relative;
+  background: #fff;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+//Immersive over rides //
+.content__main-column--interactive .element--immersive {
+  font-size: 17px !important;
+}
+
+.content__main .content__main-column--interactive .element--immersive {
+  margin-bottom: 0px !important;
+}
+
+.content__main-column--interactive > h2 {
+  margin-top: 0px !important;
+}
+
+.canvas-wrapper {
+  @include mq(mobile) {
+    display: flex;
+    margin-left: 10px;
+  }
+  @include mq(desktop) {
+    display: block;
+    margin-left: 0;
+  }
+}
+
+.ios, .android {
+  .canvas-wrapper {
+    padding-top: 64px;
+  }
+}
