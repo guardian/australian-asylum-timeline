@@ -2,15 +2,23 @@
 // just do e.g. import Scatter from "shared/js/scatter.js"
 import * as d3 from 'd3'
 import ScrollyTeller from "shared/js/scrollyteller"
-import { numberWithCommas, $$ } from 'shared/js/util.js'
+import { render } from 'shared/js/render'
+import { numberWithCommas, $$, getDimensions } from 'shared/js/util.js'
 import pointsWithFeature from 'shared/js/test.json'
+import Canvasizer from "shared/js/canvasizer"
+
+const dateCt = d3.select('.ticker__date')
 
 const scrollText = d3.select(".scroll-text")
+
+var dimensions = getDimensions(document.querySelector("#canvas-container"))
+
+const viz = new Canvasizer(dimensions)
 
 pointsWithFeature
 .concat([{}, {}, {}])
 .forEach((d, i) => {
-    if (i <= 99) {
+    if (i <= pointsWithFeature.length -1) {
     const div = scrollText
     .append('div')
     .attr('class', d.keyDay === "TRUE" ? 'scroll-text__inner' : 'scroll-text__inner scroll-text__inner--half')
@@ -49,17 +57,23 @@ const scrolly = new ScrollyTeller({
 
 const bullets = $$('.date-bullet')
 
+console.log(pointsWithFeature.length)
+
 pointsWithFeature
-.concat([{}, {}, {}])
 .forEach((d, i) => scrolly.addTrigger({ num: i, do: () => {
 
-
-  if (i <= 99) {
+  if (i <= pointsWithFeature.length - 1) {
 
     if (true) {
       
     // bullets.forEach(b => b.classList.remove('date-bullet--full'))
     bullets.forEach((b, j) => j <= i ? b.classList.add('date-bullet--full') : b.classList.remove('date-bullet--full'))
+
+    //console.log(d.manus_rpc)
+
+    dateCt.html(d.date)
+
+    viz.update(d)
 
     }
 
@@ -68,3 +82,4 @@ pointsWithFeature
 }}))
 
 scrolly.watchScroll()
+

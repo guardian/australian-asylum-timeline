@@ -5,7 +5,6 @@
 @import "enhancer";
 @import "header";
 
-
 // Uncomment for embeds
 //@import "embed";
 // Uncomment for full screen (including immersive article main media)
@@ -55,7 +54,7 @@
   @include fs-textSans(3);
   font-size: 11px;
 
-  @include mq(mobileLandscape) {
+  @include mq(mobileMedium) {
     font-size: 14px;
   }
   @include mq(tablet) {
@@ -96,7 +95,7 @@
         display: block;
       }
     }
-    @include mq(mobileLandscape) {
+    @include mq(mobileMedium) {
       width: 90px;
     }
     @include mq(tablet) {
@@ -129,7 +128,7 @@
     position: absolute;
     line-height: 32px;
 
-    @include mq(mobileLandscape) {
+    @include mq(mobileMedium) {
       font-size: 14px;
     }
 
@@ -146,7 +145,7 @@
     line-height: 24px;
     // font-size: 32px;
   }
-  @include mq(mobileLandscape) {
+  @include mq(mobileMedium) {
     font-size: 30px;
   }
   @include mq(tablet) {
@@ -171,7 +170,7 @@ canvas {
     margin-top: 50px;
     // padding-left: 10px;
   }
-  @include mq(mobileLandscape) {
+  @include mq(mobileMedium) {
     margin-top: 52px;
   }
   @include mq(desktop) {
@@ -244,4 +243,31 @@ canvas {
   .canvas-wrapper {
     padding-top: 64px;
   }
+}
+
+.canvas-container {
+  width: 600px;
+  display: inline-block;
+}
+
+
+
+.canvas-container canvas {
+  width: 600px;
+  height: 600px;
+  float: left;
+  margin-top: 5px;
+    image-rendering: optimizeSpeed;
+    image-rendering: crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+  
+}
+
+.ticker__date {
+  font-family: "Guardian Headline Full";
+  font-weight: 600;
+  color: #c50812;
 }
