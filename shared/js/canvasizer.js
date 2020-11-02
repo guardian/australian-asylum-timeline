@@ -2,11 +2,13 @@ import * as d3 from 'd3'
 
 class Canvasizer {
 
-    constructor(dims) {
+    constructor(dims, settings) {
 
         this.width = dims[0]
 
         this.height = dims[1]
+
+        this.settings = settings
 
         this.panel = this.height / 3
 
@@ -22,8 +24,6 @@ class Canvasizer {
 
         this.context = this.canvas.getContext('2d');
 
-        this.manus = 0
-
         this.setup()
 
     }
@@ -35,9 +35,9 @@ class Canvasizer {
         this.nodes = []
 
         this.simulation = d3.forceSimulation(self.nodes)
-          .force('charge', d3.forceManyBody().strength(5))
-          .force('x', d3.forceX().x((d) => self.xCenter[d.category]))
-          .force('y', d3.forceY().y((d) => self.unit))
+          .force('charge', d3.forceManyBody().strength(1))
+          .force('x', d3.forceX().x((d) => self.xCenter[d.category]).strength(0.5))
+          .force('y', d3.forceY().y((d) => self.unit).strength(0.5))
           .force('collision', d3.forceCollide().radius((d) => d.radius))
           .on('tick', ticked);
 
@@ -62,70 +62,78 @@ class Canvasizer {
 
     update(d) {
 
-        var self = this
+        for (const cluster of this.settings) {
 
-        if (d.manus_rpc!="" && !isNaN(d.manus_rpc)) {
+            if (d[cluster.key]!="" && !isNaN(d[cluster.key])) {
 
-            var num = +d.manus_rpc
+                this.render(+d[cluster.key], cluster.index)
 
-            if (this.manus != num) {
-
-                var old = this.manus
-
-                if (old > num) {
-
-                    // Delete some nodes
-
-                    var diff = old - num
-
-                    this.manus = num
-
-                    this.remove(diff)
-
-                } else {
-
-                    var diff = num - this.manus
-
-                    this.manus = num
-
-                    this.add(diff)
-
-                }
             }
         }
     }
 
-    remove(num) {
+    render(value, index) {
 
         var self = this
 
-        this.nodes = this.nodes.filter( (item, index) => {
-            return index < self.nodes.length - num
-        });
+        if (this.settings[index].value != value) {
 
-        console.log(`Remove ${num} nodes, total: ${this.nodes.length}`)
+            var old = this.settings[index].value
+
+            if (old > value) {
+
+                var diff = old - value
+
+                this.settings[index].value = value
+
+                this.remove(diff, index)
+
+            } else {
+
+                var diff = value - this.settings[index].value
+
+                this.settings[index].value = value
+
+                this.add(diff, index)
+
+            }
+        }
+    }
+
+    remove(num, index) {
+
+        var self = this
+
+        var cluster = this.nodes.filter( item => item.category === index )
+
+        cluster = cluster.filter( (item, i) => i < cluster.length - num )
+
+        var others = this.nodes.filter( item => item.category != index )
+
+        this.nodes = [ ...cluster, ...others ]
+
+        //console.log(`Remove ${num} nodes, total: ${this.nodes.length}`)
 
         this.simulation.nodes(self.nodes)
 
         this.simulation.alpha(0.3).restart();
 
-
     }
 
-    add(num) {
+    add(num, index) {
 
         var self = this
 
         var nodes = d3.range(num).map(function(d, i) {
           return {
             radius: 2.5,
-            category: 0 // Will calculate which cluster x, y coordinates we are rendering to
+            category: index
           }
         });
 
         this.nodes = this.nodes.concat(nodes);
 
-        console.log(`Add ${num} nodes, total: ${this.nodes.length}`)
+       // console.log(`Add ${num} nodes, total: ${this.nodes.length}`)
 
         this.simulation.nodes(self.nodes)
 

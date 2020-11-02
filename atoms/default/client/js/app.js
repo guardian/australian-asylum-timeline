@@ -1,5 +1,6 @@
 // if you want to import a module from shared/js then you can
 // just do e.g. import Scatter from "shared/js/scatter.js"
+import settings from 'shared/js/settings.json'
 import * as d3 from 'd3'
 import ScrollyTeller from "shared/js/scrollyteller"
 import { render } from 'shared/js/render'
@@ -13,7 +14,7 @@ const scrollText = d3.select(".scroll-text")
 
 var dimensions = getDimensions(document.querySelector("#canvas-container"))
 
-const viz = new Canvasizer(dimensions)
+const viz = new Canvasizer(dimensions, settings)
 
 pointsWithFeature
 .concat([{}, {}, {}])

@@ -1,0 +1,11 @@
+[{
+	"index" : 0,
+	"location" : "Manus",
+	"key" : "manus_rpc",
+	"value" : 0
+},{
+	"index" : 1,
+	"location" : "Nauru",
+	"key" : "nauru_pop",
+	"value" : 0
+}]
