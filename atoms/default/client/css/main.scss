@@ -229,14 +229,18 @@ canvas {
 }
 
 .canvas-wrapper {
-  @include mq(mobile) {
+
+  @include mq($until: desktop) {
     display: flex;
     margin-left: 10px;
   }
-  @include mq(desktop) {
+
+  @include mq($from: desktop) {
     display: block;
     margin-left: 0;
   }
+
+
 }
 
 .ios, .android {
@@ -245,25 +249,36 @@ canvas {
   }
 }
 
-.canvas-container {
-  width: 600px;
-  display: inline-block;
+.ticker__date {
+  @include mq($until: tablet) {
+    padding-left: 20px;
+  }
 }
 
+.canvas-container {
 
+  @include mq($until: desktop) {
+    width: 100%;
+    height: 60vh;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+  }
+
+  @include mq($from: desktop) {
+    width: 63%;
+    height: calc(100vh - 60px);
+    display: inline-block;
+  }
+}
 
 .canvas-container canvas {
-  width: 600px;
-  height: 600px;
-  float: left;
-  margin-top: 5px;
-    image-rendering: optimizeSpeed;
-    image-rendering: crisp-edges;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -o-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    -ms-interpolation-mode: nearest-neighbor;
-  
+  margin-top: 0px!important;
+  image-rendering: optimizeSpeed;
+  image-rendering: crisp-edges;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
 }
 
 .ticker__date {

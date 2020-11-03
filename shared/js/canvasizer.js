@@ -12,11 +12,15 @@ class Canvasizer {
 
         this.panel = this.height / 3
 
+        this.horizantal = this.width / 3
+
         this.unit = this.panel / 2
 
-        this.xCenter = [ this.unit, this.unit + this.panel, this.unit + (this.panel * 2), this.unit, this.unit + this.panel, this.unit, this.unit + this.panel, this.unit + (this.panel * 2)]
+        this.horizantal_unit = this.horizantal / 2
 
-        this.yCenter = [ this.unit, this.unit, this.unit, this.unit + this.panel, this.unit + this.panel, this.unit + (this.panel * 2), this.unit + (this.panel * 2), this.unit + (this.panel * 2)]
+        this.xCenter = [ this.horizantal_unit, this.horizantal_unit + this.horizantal, this.horizantal_unit + (this.horizantal * 2), this.horizantal_unit, this.horizantal_unit + this.horizantal, this.horizantal_unit, this.horizantal_unit + this.horizantal, this.horizantal_unit + (this.horizantal * 2)]
+
+        this.yCenter = [ this.unit, this.unit, this.unit, this.height / 2, this.height / 2, this.unit + (this.panel * 2), this.unit + (this.panel * 2), this.unit + (this.panel * 2)]
 
         this.canvas = document.getElementById('canvas-viz');
 
@@ -38,8 +42,8 @@ class Canvasizer {
 
         this.simulation = d3.forceSimulation(self.nodes)
           .force('charge', d3.forceManyBody().strength(1))
-          .force('x', d3.forceX().x((d) => self.xCenter[d.category]).strength(0.5))
-          .force('y', d3.forceY().y((d) => self.yCenter[d.category]).strength(0.5))
+          .force('x', d3.forceX().x((d) => self.xCenter[d.category]).strength(0.8))
+          .force('y', d3.forceY().y((d) => self.yCenter[d.category]).strength(1))
           .force('collision', d3.forceCollide().radius((d) => d.radius))
           .on('tick', ticked);
 
@@ -65,7 +69,7 @@ class Canvasizer {
 
                 if (self.settings[i].value > 0) {
 
-                    self.context.fillText(`${self.settings[i].location} - ${self.settings[i].value}`, self.xCenter[self.settings[i].index], self.yCenter[self.settings[i].index] + self.unit);
+                    self.context.fillText(`${self.settings[i].location} - ${self.settings[i].value}`, self.xCenter[self.settings[i].index], self.yCenter[self.settings[i].index] + self.unit - 10);
 
                 }
 
@@ -142,7 +146,7 @@ class Canvasizer {
 
         var nodes = d3.range(num).map(function(d, i) {
           return {
-            radius: 2.5,
+            radius: 1.5,
             category: index
           }
         });
