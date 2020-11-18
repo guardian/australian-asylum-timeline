@@ -45,6 +45,7 @@ class Canvasizer {
           .force('x', d3.forceX().x((d) => self.xCenter[d.category]).strength(0.8))
           .force('y', d3.forceY().y((d) => self.yCenter[d.category]).strength(1))
           .force('collision', d3.forceCollide().radius((d) => d.radius))
+          .alphaDecay(0.001)
           .on('tick', ticked);
 
         function ticked(){
@@ -144,21 +145,44 @@ class Canvasizer {
 
         var self = this
 
-        var nodes = d3.range(num).map(function(d, i) {
-          return {
-            radius: 1.5,
-            category: index
-          }
-        });
+        for (var i = 0; i < num; i++) {
+            
+            let node = self.randomizer(index)
 
-        this.nodes = this.nodes.concat(nodes);
+            this.nodes.push(node);
 
-        // console.log(`Add ${num} nodes, total: ${this.nodes.length}`)
+            this.simulation.nodes(self.nodes)
 
-        this.simulation.nodes(self.nodes)
+        }
 
         this.simulation.alpha(0.3).restart();
+
+        // console.log(`Add ${num} nodes, total: ${this.nodes.length}`)
+        
     }
+
+    randomizer(index) {
+
+        var self = this
+
+        var outerRadius = 500;
+        var innerRadius = 100;
+        var angle = Math.random() * Math.PI * 2;
+        var strength = Math.random() * (-0.1 - -0.3) + -0.3;
+        var distance = Math.random() * (outerRadius - innerRadius) + innerRadius;
+        var x = Math.cos(angle) * distance + this.xCenter[index];
+        var y = Math.sin(angle) * distance + this.yCenter[index];
+    
+        return { 
+            radius: 1.5,
+            category: index,
+            x: x,
+            y: y,
+            strength: strength
+        }
+
+    }
+
 }
 
 export default Canvasizer
