@@ -1,40 +1,45 @@
 [{
 	"index" : 0,
 	"location" : "Manus detention",
-	"key" : "manus_rpc",
+	"key" : "manus_detention",
 	"value" : 0
 },{
 	"index" : 1,
-	"location" : "Nauru detention",
-	"key" : "nauru_pop",
-	"value" : 1
+	"location" : "Manus community",
+	"key" : "manus_community",
+	"value" : 0
 },{
 	"index" : 2,
-	"location" : "Nauru community",
-	"key" : "nauru_rpc",
+	"location" : "Nauru detention",
+	"key" : "nauru_detention",
 	"value" : 0
 },{
 	"index" : 3,
-	"location" : "Detention",
-	"key" : "australia_detention",
+	"location" : "Nauru community",
+	"key" : "nauru_community",
 	"value" : 0
 },{
 	"index" : 4,
-	"location" : "Community",
-	"key" : "australia_community",
+	"location" : "Returned voluntary",
+	"key" : "returned_voluntary",
 	"value" : 0
 },{
 	"index" : 5,
-	"location" : "Resettled",
-	"key" : "resettled_third_country",
+	"location" : "Returned forced",
+	"key" : "returned_forced",
 	"value" : 0
 },{
 	"index" : 6,
-	"location" : "Returned",
-	"key" : "returned_country",
+	"location" : "Australia",
+	"key" : "australia",
 	"value" : 0
 },{
 	"index" : 7,
+	"location" : "Resettled third country",
+	"key" : "resettled_third_country",
+	"value" : 0
+},{
+	"index" : 8,
 	"location" : "Dead",
 	"key" : "dead",
 	"value" : 0

@@ -2,6 +2,15 @@ import mainHTML from "./atoms/default/server/templates/main.html!text"
 import rp from 'request-promise'
 import { writeFileSync } from 'fs'
 
+var categories = [	'manus_detention',
+					'manus_community',
+					'nauru_detention',
+					'nauru_community',
+					'returned_voluntary',
+					'returned_forced',
+					'australia',
+					'resettled_third_country',
+					'dead' ]
 
 export async function render() {
 
@@ -10,13 +19,35 @@ export async function render() {
 
     var dataset = json.sheets.data
 
-    for (const datapoint of dataset) {
+    //var keyNames = Object.keys(dataset[0]);
 
-    	datapoint.keyDay = (datapoint.event_text!="") ? "TRUE" : "" ;
+	dataset.forEach(function(row, index) {
 
-    }
+		for (const category of categories) {
 
-    writeFileSync('shared/js/test.json', JSON.stringify(dataset))
+			if (row[category]!="") {
+
+				row[category]= +row[category]
+
+			} else {
+
+				if (index===0) {
+
+					row[category] = 0
+
+				} else {
+
+					row[category] = dataset[index -1][category]
+
+				}
+
+			}
+		}
+
+		row.keyDay = (row.event_text!="") ? "TRUE" : "" ;
+	})
+
+    writeFileSync('shared/js/data.json', JSON.stringify(dataset))
 
     return mainHTML;
 

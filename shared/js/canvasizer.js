@@ -18,9 +18,25 @@ class Canvasizer {
 
         this.horizantal_unit = this.horizantal / 2
 
-        this.xCenter = [ this.horizantal_unit, this.horizantal_unit + this.horizantal, this.horizantal_unit + (this.horizantal * 2), this.horizantal_unit, this.horizantal_unit + this.horizantal, this.horizantal_unit, this.horizantal_unit + this.horizantal, this.horizantal_unit + (this.horizantal * 2)]
+        this.xCenter = [ this.horizantal_unit, 
+                        this.horizantal_unit + this.horizantal, 
+                        this.horizantal_unit + (this.horizantal * 2),
+                        this.horizantal_unit, 
+                        this.horizantal_unit + this.horizantal,
+                        this.horizantal_unit + (this.horizantal * 2),
+                        this.horizantal_unit, 
+                        this.horizantal_unit + this.horizantal, 
+                        this.horizantal_unit + (this.horizantal * 2)]
 
-        this.yCenter = [ this.unit, this.unit, this.unit, this.height / 2, this.height / 2, this.unit + (this.panel * 2), this.unit + (this.panel * 2), this.unit + (this.panel * 2)]
+        this.yCenter = [ this.unit, 
+                        this.unit, 
+                        this.unit, 
+                        this.height / 2, 
+                        this.height / 2, 
+                        this.height / 2, 
+                        this.unit + (this.panel * 2), 
+                        this.unit + (this.panel * 2), 
+                        this.unit + (this.panel * 2)]
 
         this.canvas = document.getElementById('canvas-viz');
 
