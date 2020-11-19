@@ -1,10 +1,11 @@
-import { supportsSticky } from "./util.js"
+import { supportsSticky, $$, $ } from "./util.js"
 
 class ScrollyTeller {
     constructor(config) {
-        this.isMobile = window.innerWidth < 740;
-        this.triggerTop = (!this.isMobile) ? config.triggerTop : config.triggerTopMobile;
-        this.scrollInner = config.parent.querySelector(".scroll-inner");
+        this.isMobile = window.innerWidth < 600;
+        this.isTablet = window.innerWidth < 780 && window.innerWidth >= 600;
+        this.triggerTop = (this.isMobile) ? config.triggerTopMobile : this.isTablet ? config.triggerTopTablet : config.triggerTop
+        this.scrollInner = config.parent.querySelector(".scroll-inner");1
         this.scrollText = config.parent.querySelector(".scroll-text");
         this.scrollWrapper = config.parent.querySelector(".scroll-wrapper");
         this.lastScroll = null;
@@ -12,8 +13,18 @@ class ScrollyTeller {
         this.triggerPoints = [];
         this.textBoxes = [].slice.apply(this.scrollText.querySelectorAll(".scroll-text__inner"));
         this.transparentUntilActive = config.transparentUntilActive;
+        this.bigBoxHeight = config.bigBoxHeight
+        this.smallBoxHeight = config.smallBoxHeight
 
-        this.scrollWrapper.style.height = this.textBoxes.length * 100 + "vh";
+        this.divs = $$('.scroll-text__div')
+
+
+        const noSmallBoxes = document.querySelectorAll('.scroll-text__inner--half').length 
+        const noBigBoxes = document.querySelectorAll('.scroll-text__inner').length - noSmallBoxes
+
+        const height = [...document.querySelectorAll('.scroll-text__inner')].map(d => d.getBoundingClientRect().height).reduce((a, b) => a + b) + 500 
+
+        this.scrollWrapper.style.height = height + "px";
 
         if(this.transparentUntilActive) {
             config.parent.classList.add("transparent-until-active");
@@ -23,7 +34,6 @@ class ScrollyTeller {
     checkScroll() {
         if(this.lastScroll !== window.pageYOffset) {
             const bbox = this.scrollText.getBoundingClientRect();
-    
             if(!supportsSticky) {
                 if(bbox.top <= 0 && bbox.bottom >= window.innerHeight) {
                     this.scrollInner.classed("fixed-top", true);
@@ -40,11 +50,22 @@ class ScrollyTeller {
                 }
             }
     
-            if(bbox.top < (window.innerHeight*(this.triggerTop)) && bbox.bottom > window.innerHeight/2) { 
-                const i = Math.floor(Math.abs(bbox.top - (window.innerHeight*(this.triggerTop)))/bbox.height*this.textBoxes.length);
-    
-                if(i !== this.lastI) {
+            if(bbox.top < (window.innerHeight*(this.triggerTop)) && bbox.bottom > window.innerHeight/2) {
+                
+                //const i = Math.floor(Math.abs(bbox.top - (window.innerHeight*(this.triggerTop)))/bbox.height*this.textBoxes.length);
+
+                let i = this.divs.findIndex( el => el.getBoundingClientRect().top > this.triggerTop*window.innerHeight ) - 1
+
+                if(i < 0) {
+
+                    if($('.scroll-text__div').getBoundingClientRect().top < 0) {
+                        i = 99
+                    }
+                }
+
+                if(i >= 0 && i !== this.lastI) {
                     this.lastI = i; 
+
                     this.doScrollAction(i);
 
                     if(this.transparentUntilActive) {
@@ -66,7 +87,7 @@ class ScrollyTeller {
     }
 
     doScrollAction(i) {
-        const trigger = this.triggerPoints.find(d => d.num === i+1);
+        const trigger = this.triggerPoints.find(d => d.num === i);
         if(trigger) {
             trigger.do();
         }

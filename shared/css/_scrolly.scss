@@ -52,9 +52,14 @@
   width: 100%;
   top: 0;
   height: auto;
-  margin-bottom: 100px;
   max-height: 100vh;
-  margin-left: 0;
+
+  @include mq(mobile) {
+      margin-left: -10px;
+  }
+  @include mq(desktop) {
+      margin-left: 0;
+  }
 
   &.fixed-top {
     position: fixed;
@@ -102,10 +107,10 @@
     pointer-events: none;
     z-index: -1;
     border-bottom: none;
-    margin-left: 20px;
   }
 
-  @include mq(tablet) {
+  @include mq(desktop) {
+    height: 100%;
     border-bottom: 1px solid #dcdcdc;
     position: absolute;
     right: -20px;
@@ -147,11 +152,13 @@
 }
 
 .scroll-text__div {
-
   position: relative;
+  max-width: 620px;
   height: 100%;
-  width: 100%;
-
+  // width: 100%;
+  @include mq(desktop) {
+    // width: 620px;
+  }
   margin-left: 0px;
   padding: 6px 10px 0px;
   padding-top: 4px;
@@ -160,7 +167,6 @@
   > p {
     margin-bottom: 32px;
     margin-left: 0 !important;
-    margin-right: 20px;
     max-width: auto;
     pointer-events: all;
     @include mq(desktop) {

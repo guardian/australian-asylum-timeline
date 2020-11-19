@@ -61,9 +61,10 @@ const bullets = $$('.date-bullet')
 console.log(pointsWithFeature.length)
 
 pointsWithFeature
+.concat([{}, {}, {}])
 .forEach((d, i) => scrolly.addTrigger({ num: i, do: () => {
 
-  if (i <= pointsWithFeature.length - 1) {
+  if (i < pointsWithFeature.length) {
 
     if (true) {
       

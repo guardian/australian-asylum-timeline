@@ -229,29 +229,19 @@ canvas {
 }
 
 .canvas-wrapper {
-
-  @include mq($until: desktop) {
+  @include mq(mobile) {
     display: flex;
     margin-left: 10px;
   }
-
-  @include mq($from: desktop) {
+  @include mq(desktop) {
     display: block;
     margin-left: 0;
   }
-
-
 }
 
 .ios, .android {
   .canvas-wrapper {
     padding-top: 64px;
-  }
-}
-
-.ticker__date {
-  @include mq($until: tablet) {
-    padding-left: 20px;
   }
 }
 
@@ -280,6 +270,15 @@ canvas {
   image-rendering: -webkit-optimize-contrast;
   -ms-interpolation-mode: nearest-neighbor;
 }
+
+
+.ticker__date {
+  @include mq($until: tablet) {
+    padding-left: 20px;
+  }
+}
+
+
 
 .ticker__date {
   font-family: "Guardian Headline Full";

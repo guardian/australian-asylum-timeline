@@ -18,25 +18,25 @@ class Canvasizer {
 
         this.horizantal_unit = this.horizantal / 2
 
-        this.xCenter = [ this.horizantal_unit, 
-                        this.horizantal_unit + this.horizantal, 
-                        this.horizantal_unit + (this.horizantal * 2),
-                        this.horizantal_unit, 
-                        this.horizantal_unit + this.horizantal,
-                        this.horizantal_unit + (this.horizantal * 2),
-                        this.horizantal_unit, 
-                        this.horizantal_unit + this.horizantal, 
-                        this.horizantal_unit + (this.horizantal * 2)]
+        this.xCenter = [    this.horizantal_unit, 
+                            this.horizantal_unit + this.horizantal, 
+                            this.horizantal_unit + (this.horizantal * 2),
+                            this.horizantal_unit, 
+                            this.horizantal_unit + this.horizantal,
+                            this.horizantal_unit + (this.horizantal * 2),
+                            this.horizantal_unit, 
+                            this.horizantal_unit + this.horizantal, 
+                            this.horizantal_unit + (this.horizantal * 2)]
 
-        this.yCenter = [ this.unit, 
-                        this.unit, 
-                        this.unit, 
-                        this.height / 2, 
-                        this.height / 2, 
-                        this.height / 2, 
-                        this.unit + (this.panel * 2), 
-                        this.unit + (this.panel * 2), 
-                        this.unit + (this.panel * 2)]
+        this.yCenter = [    this.unit, 
+                            this.unit, 
+                            this.unit, 
+                            this.height / 2, 
+                            this.height / 2, 
+                            this.height / 2, 
+                            this.unit + (this.panel * 2), 
+                            this.unit + (this.panel * 2), 
+                            this.unit + (this.panel * 2)]
 
         this.canvas = document.getElementById('canvas-viz');
 
@@ -76,6 +76,7 @@ class Canvasizer {
                 self.context.arc(d.x, d.y, d.radius, 0, 2 * Math.PI, true);
                 self.context.fillStyle = 'lightblue'
                 self.context.fill();
+
             });
 
             self.context.font = "12px Arial";
@@ -101,15 +102,14 @@ class Canvasizer {
 
         for (const cluster of this.settings) {
 
-            if (d[cluster.key]!="" && !isNaN(d[cluster.key])) {
+            this.render(+d[cluster.key], cluster.index, cluster.location)
 
-                this.render(+d[cluster.key], cluster.index)
-
-            }
         }
     }
 
-    render(value, index) {
+    render(value, index, location) {
+
+        console.log(`${location}: ${value}`)
 
         var self = this
 
@@ -163,11 +163,11 @@ class Canvasizer {
 
         for (var i = 0; i < num; i++) {
             
-            let node = self.randomizer(index)
+            let node = self.randomizer(index);
 
-            this.nodes.push(node);
+            self.nodes.push(node);
 
-            this.simulation.nodes(self.nodes)
+            self.simulation.nodes(self.nodes)
 
         }
 
@@ -181,7 +181,7 @@ class Canvasizer {
 
         var self = this
 
-        var outerRadius = 500;
+        var outerRadius = 1500;
         var innerRadius = 100;
         var angle = Math.random() * Math.PI * 2;
         var strength = Math.random() * (-0.1 - -0.3) + -0.3;
