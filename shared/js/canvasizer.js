@@ -38,6 +38,27 @@ class Canvasizer {
                             this.unit + (this.panel * 2), 
                             this.unit + (this.panel * 2)]
 
+
+        this.xLabel =   [   0, 
+                            this.width / 2 / 2,
+                            this.width / 2, 
+                            this.horizantal_unit * 5, 
+                            0, 
+                            0, 
+                            this.horizantal_unit * 2, 
+                            this.horizantal_unit * 4]
+
+        this.yLabel = [     this.panel - 20, 
+                            this.panel - 20, 
+                            this.panel - 20, 
+                            this.panel - 20, 
+                            this.panel * 2,  
+                            this.panel * 3 - 20, 
+                            this.panel * 3 - 20, 
+                            this.panel * 3 - 20]
+
+
+
         this.labels = [{
             "label" : "Nauru",
             "x" : 0,
@@ -49,19 +70,19 @@ class Canvasizer {
         },{
             "label" : "Dead",
             "x" : 0,
-            "y" : this.panel + 20
+            "y" : this.panel + 30
         },{
             "label" : "Australia",
             "x" : 0,
-            "y" : this.panel * 2
+            "y" : this.panel * 2 + 40
         },{
             "label" : "Resettled",
-            "x" : this.horizantal_unit * 2 + 20,
-            "y" : this.panel * 2
+            "x" : this.horizantal_unit * 2,
+            "y" : this.panel * 2 + 40
         },{
             "label" : "Returned",
-            "x" : this.horizantal_unit * 4 + 20,
-            "y" : this.panel * 2
+            "x" : this.horizantal_unit * 4,
+            "y" : this.panel * 2 + 40
         }]
 
         this.canvas = document.getElementById('canvas-viz');
@@ -124,21 +145,19 @@ class Canvasizer {
 
             });
 
-            /* // Old way of adding labels... gonna switch to adding them to an SVG overlayer
             self.context.font = "12px Arial";
             self.context.fillStyle = 'black'
-            self.context.textAlign = "center";
+            //self.context.textAlign = "center";
 
             for (var i = 0; i < self.settings.length; i++) {
 
                 if (self.settings[i].value > 0) {
 
-                    self.context.fillText(`${self.settings[i].value} ${self.settings[i].location}`, self.xCenter[self.settings[i].index], self.yCenter[self.settings[i].index]);
+                    self.context.fillText(`${self.settings[i].value} ${self.settings[i].location}`, self.xLabel[self.settings[i].index], self.yLabel[self.settings[i].index]);
 
                 }
 
             }
-            */
 
             self.context.restore();
 
