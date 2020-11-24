@@ -247,10 +247,11 @@ canvas {
 
 .canvas-container {
 
+  position: relative;
+
   @include mq($until: desktop) {
     width: 100%;
     height: 60vh;
-    border-bottom: 1px solid black;
     padding-bottom: 10px;
   }
 
@@ -271,6 +272,11 @@ canvas {
   -ms-interpolation-mode: nearest-neighbor;
 }
 
+#text-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
 
 .ticker__date {
   @include mq($until: tablet) {

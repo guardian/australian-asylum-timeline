@@ -16,14 +16,15 @@ class Canvasizer {
 
         this.unit = this.panel / 2
 
+        this.third = this.unit / 3
+
         this.horizantal_unit = this.horizantal / 2
 
         this.xCenter = [    this.horizantal_unit, 
-                            this.horizantal_unit + this.horizantal, 
-                            this.horizantal_unit + (this.horizantal * 2),
+                            this.horizantal_unit + ( this.third * 3 ),
+                            this.horizantal_unit + (this.horizantal * 2) - ( this.third * 4 ), 
+                            this.horizantal_unit + (this.horizantal * 2) - ( this.third ), 
                             this.horizantal_unit, 
-                            this.horizantal_unit + this.horizantal,
-                            this.horizantal_unit + (this.horizantal * 2),
                             this.horizantal_unit, 
                             this.horizantal_unit + this.horizantal, 
                             this.horizantal_unit + (this.horizantal * 2)]
@@ -31,12 +32,37 @@ class Canvasizer {
         this.yCenter = [    this.unit, 
                             this.unit, 
                             this.unit, 
-                            this.height / 2, 
-                            this.height / 2, 
-                            this.height / 2, 
+                            this.unit, 
+                            this.height / 2,  
                             this.unit + (this.panel * 2), 
                             this.unit + (this.panel * 2), 
                             this.unit + (this.panel * 2)]
+
+        this.labels = [{
+            "label" : "Nauru",
+            "x" : 0,
+            "y" : 20
+        },{
+            "label" : "Manus",
+            "x" : this.width / 2,
+            "y" : 20
+        },{
+            "label" : "Dead",
+            "x" : 0,
+            "y" : this.panel + 20
+        },{
+            "label" : "Australia",
+            "x" : 0,
+            "y" : this.panel * 2
+        },{
+            "label" : "Resettled",
+            "x" : this.horizantal_unit * 2 + 20,
+            "y" : this.panel * 2
+        },{
+            "label" : "Returned",
+            "x" : this.horizantal_unit * 4 + 20,
+            "y" : this.panel * 2
+        }]
 
         this.canvas = document.getElementById('canvas-viz');
 
@@ -46,6 +72,12 @@ class Canvasizer {
 
         this.context = this.canvas.getContext('2d');
 
+        this.svg = d3.select('#text-overlay')
+
+        this.svg
+            .style("width", this.width + 'px')
+            .style("height", this.height + 'px');
+
         this.setup()
 
     }
@@ -53,6 +85,19 @@ class Canvasizer {
     setup() {
 
         var self = this
+
+        for (const label of this.labels) {
+
+            this.svg.append("text")
+                .attr("x", label.x)
+                .attr("y", label.y)
+                .text(label.label)
+                .attr("font-family", "Guardian Headline Full")
+                .attr("font-size", "20px")
+                .attr("font-weight", "600")
+                .attr("fill", "black");
+
+        }
 
         this.nodes = []
 
@@ -79,6 +124,7 @@ class Canvasizer {
 
             });
 
+            /* // Old way of adding labels... gonna switch to adding them to an SVG overlayer
             self.context.font = "12px Arial";
             self.context.fillStyle = 'black'
             self.context.textAlign = "center";
@@ -87,11 +133,12 @@ class Canvasizer {
 
                 if (self.settings[i].value > 0) {
 
-                    self.context.fillText(`${self.settings[i].location} - ${self.settings[i].value}`, self.xCenter[self.settings[i].index], self.yCenter[self.settings[i].index] + self.unit - 10);
+                    self.context.fillText(`${self.settings[i].value} ${self.settings[i].location}`, self.xCenter[self.settings[i].index], self.yCenter[self.settings[i].index]);
 
                 }
 
             }
+            */
 
             self.context.restore();
 

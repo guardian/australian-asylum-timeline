@@ -40,9 +40,10 @@ export async function render() {
 					row[category] = dataset[index -1][category]
 
 				}
-
 			}
 		}
+
+		row.returned_combined = row.returned_voluntary + row.returned_forced
 
 		row.keyDay = (row.event_text!="") ? "TRUE" : "" ;
 	})

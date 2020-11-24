@@ -12,7 +12,7 @@ const dateCt = d3.select('.ticker__date')
 
 const scrollText = d3.select(".scroll-text")
 
-var dimensions = getDimensions(document.querySelector("#canvas-container"))
+const dimensions = getDimensions(document.querySelector("#canvas-container"))
 
 const viz = new Canvasizer(dimensions, settings)
 
@@ -58,26 +58,17 @@ const scrolly = new ScrollyTeller({
 
 const bullets = $$('.date-bullet')
 
-console.log(pointsWithFeature.length)
-
 pointsWithFeature
 .concat([{}, {}, {}])
 .forEach((d, i) => scrolly.addTrigger({ num: i, do: () => {
 
   if (i < pointsWithFeature.length) {
 
-    if (true) {
-      
-    // bullets.forEach(b => b.classList.remove('date-bullet--full'))
     bullets.forEach((b, j) => j <= i ? b.classList.add('date-bullet--full') : b.classList.remove('date-bullet--full'))
-
-    //console.log(d.manus_rpc)
 
     dateCt.html(d.date)
 
     viz.update(d)
-
-    }
 
   }
   
