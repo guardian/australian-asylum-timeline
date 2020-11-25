@@ -3,7 +3,6 @@
 import settings from 'shared/js/settings.json'
 import * as d3 from 'd3'
 import ScrollyTeller from "shared/js/scrollyteller"
-import { render } from 'shared/js/render'
 import { numberWithCommas, $$, getDimensions } from 'shared/js/util.js'
 import pointsWithFeature from 'shared/js/data.json'
 import Canvasizer from "shared/js/canvasizer"

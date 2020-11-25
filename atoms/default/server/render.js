@@ -10,7 +10,13 @@ var categories = [	'manus_detention',
 					'returned_forced',
 					'australia',
 					'resettled_third_country',
-					'dead' ]
+					'dead',
+					'manus_detention_kids',
+					'manus_community_kids',
+					'nauru_detention_kids',
+					'nauru_community_kids',
+					'australia_kids',
+					'resettled_us']
 
 export async function render() {
 
@@ -44,6 +50,14 @@ export async function render() {
 		}
 
 		row.returned_combined = row.returned_voluntary + row.returned_forced
+
+		row.s1 = `${row.nauru_detention_kids} kids, ${row.nauru_detention - row.nauru_detention_kids} adults`
+		row.s2 = `${row.nauru_community_kids} kids, ${row.nauru_community - row.nauru_community_kids} adults`
+		row.s3 = `${row.manus_detention_kids} kids, ${row.manus_detention - row.manus_detention_kids} adults`
+		row.s4 = `${row.manus_community_kids} kids, ${row.manus_community - row.manus_community_kids} adults`
+		row.s5 = `${row.australia_kids} kids, ${row.australia - row.australia_kids} adults`
+		row.s6 = `${row.resettled_us} in the US, ${row.resettled_third_country - row.resettled_us} elsewhere`
+		row.s7 = `${row.returned_voluntary} voluntary, ${row.returned_forced} by force`
 
 		row.keyDay = (row.event_text!="") ? "TRUE" : "" ;
 	})

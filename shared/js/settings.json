@@ -1,41 +1,57 @@
 [{
 	"index" : 0,
 	"location" : "in detention",
-	"key" : "manus_detention",
+	"key" : "nauru_detention",
+	"secondary" : true,
+	"sid" : "s1",
 	"value" : 0
 },{
 	"index" : 1,
 	"location" : "in the community",
-	"key" : "manus_community",
+	"key" : "nauru_community",
+	"secondary" : true,
+	"sid" : "s2",
 	"value" : 0
 },{
 	"index" : 2,
 	"location" : "in detention",
-	"key" : "nauru_detention",
+	"key" : "manus_detention",
+	"secondary" : true,
+	"sid" : "s3",
 	"value" : 0
 },{
 	"index" : 3,
 	"location" : "in the community",
-	"key" : "nauru_community",
+	"key" : "manus_community",
+	"secondary" : true,
+	"sid" : "s4",
 	"value" : 0
 },{
 	"index" : 4,
 	"location" : "dead since 2013",
 	"key" : "dead",
+	"secondary" : false,
+	"sid" : null,
 	"value" : 0
 },{
 	"index" : 5,
 	"location" : "in Australia",
 	"key" : "australia",
+	"secondary" : true,
+	"sid" : "s5",
 	"value" : 0
 },{
 	"index" : 6,
 	"location" : "resettled in another country",
 	"key" : "resettled_third_country",
+	"secondary" : true,
+	"sid" : "s6",
 	"value" : 0
 },{
 	"index" : 7,
 	"location" : "returned to home country",
 	"key" : "returned_combined",
+	"secondary" : true,
+	"sid" : "s7",
 	"value" : 0
 }]

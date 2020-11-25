@@ -99,6 +99,8 @@ class Canvasizer {
             .style("width", this.width + 'px')
             .style("height", this.height + 'px');
 
+        this.current = null
+
         this.setup()
 
     }
@@ -155,6 +157,12 @@ class Canvasizer {
 
                     self.context.fillText(`${self.settings[i].value} ${self.settings[i].location}`, self.xLabel[self.settings[i].index], self.yLabel[self.settings[i].index]);
 
+                    if (self.settings[i].secondary) {
+
+                        self.context.fillText(`${self.current[self.settings[i].sid]}`, self.xLabel[self.settings[i].index], self.yLabel[self.settings[i].index] + 15);
+
+                    }
+
                 }
 
             }
@@ -165,6 +173,8 @@ class Canvasizer {
     }
 
     update(d) {
+
+        this.current  = d
 
         for (const cluster of this.settings) {
 
