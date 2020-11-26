@@ -5,7 +5,9 @@
   }
 
   @include mq(tablet) {
-    width: 700px;
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
   }
 
   @include mq(desktop) {
@@ -54,9 +56,14 @@
   height: auto;
   max-height: 100vh;
 
-  @include mq(mobile) {
-      margin-left: -10px;
+  @include mq($until: tablet) {
+    margin-left: 0px;
   }
+
+  @include mq($from: tablet) {
+    margin-top: 20px;
+  }
+
   @include mq(desktop) {
       margin-left: 0;
   }
@@ -109,7 +116,7 @@
     border-bottom: none;
   }
 
-  @include mq(desktop) {
+  @include mq(tablet) {
     height: 100%;
     border-bottom: 1px solid #dcdcdc;
     position: absolute;
@@ -117,6 +124,7 @@
     width: 37%;
     z-index: 1;
     // height: 100%;
+    margin-top: 20px;
   }
 }
 

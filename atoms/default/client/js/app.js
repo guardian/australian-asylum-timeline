@@ -5,6 +5,7 @@ import * as d3 from 'd3'
 import ScrollyTeller from "shared/js/scrollyteller"
 import { numberWithCommas, $$, getDimensions } from 'shared/js/util.js'
 import pointsWithFeature from 'shared/js/data.json'
+import getUnits from 'shared/js/getUnits'
 import Canvasizer from "shared/js/canvasizer"
 
 const dateCt = d3.select('.ticker__date')
@@ -13,7 +14,9 @@ const scrollText = d3.select(".scroll-text")
 
 const dimensions = getDimensions(document.querySelector("#canvas-container"))
 
-const viz = new Canvasizer(dimensions, settings)
+const units = getUnits(dimensions)
+
+const viz = new Canvasizer(units, settings)
 
 pointsWithFeature
 .concat([{}, {}, {}])

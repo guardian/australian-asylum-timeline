@@ -2,88 +2,25 @@ import * as d3 from 'd3'
 
 class Canvasizer {
 
-    constructor(dims, settings) {
+    constructor(units, settings) {
 
-        this.width = dims[0]
+        this.width = units.width
 
-        this.height = dims[1]
+        this.height = units.height
+
+        this.isMobile = units.isMobile
 
         this.settings = settings
 
-        this.panel = this.height / 3
+        this.xCenter = units.xCenter
 
-        this.horizantal = this.width / 3
+        this.yCenter = units.yCenter
 
-        this.unit = this.panel / 2
+        this.xLabel = units.xLabel
 
-        this.third = this.unit / 3
+        this.yLabel = units.yLabel
 
-        this.horizantal_unit = this.horizantal / 2
-
-        this.xCenter = [    this.horizantal_unit, 
-                            this.horizantal_unit + ( this.third * 3 ),
-                            this.horizantal_unit + (this.horizantal * 2) - ( this.third * 4 ), 
-                            this.horizantal_unit + (this.horizantal * 2) - ( this.third ), 
-                            this.horizantal_unit, 
-                            this.horizantal_unit, 
-                            this.horizantal_unit + this.horizantal, 
-                            this.horizantal_unit + (this.horizantal * 2)]
-
-        this.yCenter = [    this.unit, 
-                            this.unit, 
-                            this.unit, 
-                            this.unit, 
-                            this.height / 2,  
-                            this.unit + (this.panel * 2), 
-                            this.unit + (this.panel * 2), 
-                            this.unit + (this.panel * 2)]
-
-
-        this.xLabel =   [   0, 
-                            this.width / 2 / 2,
-                            this.width / 2, 
-                            this.horizantal_unit * 5, 
-                            0, 
-                            0, 
-                            this.horizantal_unit * 2, 
-                            this.horizantal_unit * 4]
-
-        this.yLabel = [     this.panel - 20, 
-                            this.panel - 20, 
-                            this.panel - 20, 
-                            this.panel - 20, 
-                            this.panel * 2,  
-                            this.panel * 3 - 20, 
-                            this.panel * 3 - 20, 
-                            this.panel * 3 - 20]
-
-
-
-        this.labels = [{
-            "label" : "Nauru",
-            "x" : 0,
-            "y" : 20
-        },{
-            "label" : "Manus",
-            "x" : this.width / 2,
-            "y" : 20
-        },{
-            "label" : "Dead",
-            "x" : 0,
-            "y" : this.panel + 30
-        },{
-            "label" : "Australia",
-            "x" : 0,
-            "y" : this.panel * 2 + 40
-        },{
-            "label" : "Resettled",
-            "x" : this.horizantal_unit * 2,
-            "y" : this.panel * 2 + 40
-        },{
-            "label" : "Returned",
-            "x" : this.horizantal_unit * 4,
-            "y" : this.panel * 2 + 40
-        }]
+        this.labels = units.labels
 
         this.canvas = document.getElementById('canvas-viz');
 
@@ -118,9 +55,100 @@ class Canvasizer {
                 .attr("font-family", "Guardian Headline Full")
                 .attr("font-size", "20px")
                 .attr("font-weight", "600")
-                .attr("fill", "black");
+                .attr("fill", "black")
+                .attr("text-anchor", label.orientation)
 
         }
+
+        if (this.isMobile) {
+
+            this.svgSetup()
+
+        } else {
+
+            this.atomized()
+
+        }
+
+    }
+
+    svgSetup() {
+
+        var self = this
+
+        for (var i = 0; i < this.xLabel.length; i++) {
+
+            this.settings[i].x = this.xCenter[i]
+
+            this.settings[i].y = this.yCenter[i]
+
+        }
+
+        this.scale = d3.scaleLinear() .domain([ 0, 1500 ]) .range([ 3, 35 ]); 
+
+        this.svg.append('g')
+                .selectAll('circle')
+                .data(self.settings)
+                .enter().append('circle')
+                .attr('r',function (d) { return  self.scale(d.value) }) //
+                .attr('fill', function (d) { return d.colour; })
+                .attr("cx", function (d) { return d.x; })
+                .attr("cy", function (d) { return d.y; })
+                .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
+
+        this.svg.append('g')
+                .selectAll('text')
+                .data(self.settings)
+                .enter()
+                .append('text')
+                .attr('class', "circle-values")
+                .text(d => `${d.value}`)
+                .attr('font-size', 12)
+                .attr('dx', function (d) { return d.x; })
+                .attr('dy',function (d) { return d.y + 50; })
+                .attr("font-family", "Guardian Text Sans Web,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif")
+                .attr("font-size", "12px")
+                .attr("fill", "black")
+                .attr("text-anchor", 'middle')
+                .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
+
+    }
+
+    updateSVG(value, index) {
+
+        var self = this
+
+        this.settings[index].value = value
+
+        var u = d3.selectAll('circle').data(self.settings);
+
+        u.enter()
+            .append('circle')
+            .merge(u)
+          .transition()
+            .duration(100)
+            .attr('r',function (d) { return  self.scale(d.value) })
+            .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
+
+        u.exit()
+            .transition()
+            .duration(100)
+            .attr('r', 0)
+          .style('opacity', 0)
+            .each('end', function() {
+                d3.select(this).remove();
+            });
+
+        var t = d3.selectAll('.circle-values').data(self.settings)
+                    .text(d => `${d.value}`)
+                    .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
+    }
+
+    atomized() {
+
+        var self = this
+
+        this.settings = this.settings.sort( (a, b) => a.index - b.index);
 
         this.nodes = []
 
@@ -170,6 +198,7 @@ class Canvasizer {
             self.context.restore();
 
         }
+
     }
 
     update(d) {
@@ -178,7 +207,20 @@ class Canvasizer {
 
         for (const cluster of this.settings) {
 
-            this.render(+d[cluster.key], cluster.index, cluster.location)
+            if (this.isMobile) {
+
+                // Update SVG circles and labels
+
+                this.updateSVG(+d[cluster.key], cluster.index)
+
+
+            } else {
+
+                console.log("Not mobile")
+
+                this.render(+d[cluster.key], cluster.index, cluster.location)
+
+            }
 
         }
     }
