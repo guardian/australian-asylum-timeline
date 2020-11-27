@@ -84,7 +84,7 @@ class Canvasizer {
 
         }
 
-        this.scale = d3.scaleLinear() .domain([ 0, 1500 ]) .range([ 3, 35 ]); 
+        this.scale = d3.scaleSqrt().domain([ 0, 1500 ]) .range([2, 35 ]); 
 
         this.svg.append('g')
                 .selectAll('circle')
