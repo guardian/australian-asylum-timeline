@@ -1,18 +1,199 @@
 .content__main-column--interactive {
-  >p, >h2 {
-    @include mq(tablet) {
-      max-width: 620px;
-    }
-    @include mq(leftCol) {
-      margin-left: 160px;
-    }
 
-    @include mq(wide) {
-        margin-left: 240px;
-    }
-  }
 }
 
 .content__main-column--interactive .element--immersive {
   margin-bottom: 0 !important;
+
+}
+
+
+.content .gs-container, .content-footer .gs-container {
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box;
+}
+
+.content__main-column {
+  width: calc(100% - 2px)!important;
+  
+
+  @include mq($until: leftCol) {
+    max-width: 100%;
+  }
+
+}
+
+
+.gs-container {
+
+    @include mq($until: mobileLandscape) {
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+    }
+
+    @include mq($from: mobileLandscape, $until: tablet) {
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+    }
+
+    @include mq($from: tablet, $until: desktop) {
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+    }
+
+    @include mq($from: desktop, $until: leftCol) {
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+    }
+
+    @include mq($from: leftCol, $until: wide) {
+
+    }
+
+    @include mq($from: wide) {
+
+    }
+
+}
+
+.content__head {
+  width: 100%;
+  box-sizing: border-box;
+  
+  @include mq($until: desktop) {
+    padding: 20px;
+  }
+
+  @include mq($until: mobileLandscape) {
+    margin-left: 0rem;
+    margin-right: 0;
+  }
+
+  @include mq($from: mobileLandscape, $until: tablet) {
+    margin-left: 0rem;
+    margin-right: 0;
+  }
+
+  @include mq($from: tablet, $until: desktop) {
+    margin-left: 8rem;
+    margin-right: 0;
+  }
+
+  @include mq($from: desktop, $until: leftCol) {
+    margin-left: 6rem;
+    margin-right: 0;
+  }
+
+  @include mq($from: leftCol, $until: wide) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+}
+
+.meta__contact-wrap {
+
+  width: 100%;
+  box-sizing: border-box;
+  
+  @include mq($until: desktop) {
+    padding: 20px;
+  }
+
+  @include mq($until: mobileLandscape) {
+    margin-left: 0rem;
+    margin-right: 0;
+  }
+
+  @include mq($from: mobileLandscape, $until: tablet) {
+    margin-left: 0rem;
+    margin-right: 0;
+  }
+
+  @include mq($from: tablet, $until: desktop) {
+    margin-left: 8rem;
+    margin-right: 0;
+  }
+
+  @include mq($from: desktop, $until: leftCol) {
+    margin-left: 6rem;
+    margin-right: 0;
+  }
+
+  @include mq($from: leftCol, $until: wide) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+
+
+
+}
+
+.meta__extras {
+  width: 100%;
+  box-sizing: border-box;
+
+  @include mq($until: desktop) {
+    padding: 20px;
+  }
+
+  @include mq($until: mobileLandscape) {
+    margin-left: 0rem;
+    margin-right: 0;
+  }
+
+  @include mq($from: mobileLandscape, $until: tablet) {
+    margin-left: 0rem;
+    margin-right: 0;
+  }
+
+  @include mq($from: tablet, $until: desktop) {
+    margin-left: 8rem;
+    margin-right: 0;
+    border: none;
+  }
+
+  @include mq($from: desktop, $until: leftCol) {
+    margin-left: 6rem;
+    margin-right: 0;
+    border: none;
+  }
+
+  @include mq($from: leftCol, $until: wide) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @include mq($from: wide) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+}
+
+.label__link-wrapper {
+
+  @include mq($from: leftCol) {
+    padding-left: 20px;
+  }
+
+
 }

@@ -78,3 +78,15 @@ pointsWithFeature
 
 scrolly.watchScroll()
 
+window.addEventListener("resize", function() {
+
+    clearTimeout(document.body.data)
+
+    document.body.data = setTimeout( function() { 
+
+      location.reload();
+
+    }, 200);
+
+});
+

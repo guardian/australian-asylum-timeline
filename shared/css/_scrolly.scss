@@ -1,18 +1,15 @@
 .scroll-wrapper {
-  @include mq(mobile) {
-    border-bottom: none;
-    margin-top: 24px;
-  }
-
-  @include mq(tablet) {
-    box-sizing: border-box;
-    padding: 20px;
-    width: 100%;
-  }
+  box-sizing: border-box;
+  width: 100%;
+  margin: auto;
+  background-color: #fff;
+  position: relative;
+  z-index: 100;
+  border-bottom: 1px solid #dcdcdc;
 
   @include mq(desktop) {
     margin-top: 30px;
-    width: 940px;
+    width: 100%;
     padding-bottom: 160px;
     border-bottom: 1px solid #dcdcdc;
   }
@@ -23,28 +20,45 @@
   @include mq(wide) {
     width: 1260px;
   }
-  box-sizing: border-box;
-  margin: auto;
-  background-color: #fff;
-  position: relative;
-  z-index: 100;
-  //   border-top: 1px solid #dcdcdc;
 
-  // margin-bottom: 36px;
-  border-bottom: 1px solid #dcdcdc;
 
   &:before {
     content: "";
     border-top: 1px solid $neutral-86;
-    width: calc(100% + 20px);
     z-index: 1000;
     position: absolute;
-    left: -10px;
+    
 
-    @include mq(mobileLandscape) {
+    @include mq($until: mobileLandscape) {
+      width: calc(100% - 20px);
+      left: 0px;
+    }
+
+    @include mq($from: mobileLandscape, $until: tablet) {
+      width: 100%;
+      left: 0px;
+    }
+
+    @include mq($from: tablet, $until: desktop) {
+      width: 50%;
+      left: 0px;
+    }
+
+    @include mq($from: desktop, $until: leftCol) {
+      width: 100%;
+      left: 0px;
+    }
+
+    @include mq($from: leftCol, $until: wide) {
       width: calc(100% + 40px);
       left: -20px;
     }
+
+    @include mq($from: wide) {
+      width: calc(100% + 40px);
+      left: -20px;
+    }
+
   }
 }
 
@@ -120,11 +134,9 @@
     height: 100%;
     border-bottom: 1px solid #dcdcdc;
     position: absolute;
-    right: -20px;
+    right: 0px;
     width: 37%;
     z-index: 1;
-    // height: 100%;
-    margin-top: 20px;
   }
 }
 

@@ -51,12 +51,12 @@ export default function desktop(width, height) {
     var labels = [{
         "label" : "Nauru",
         "x" : ( width / 2 ) / 2,
-        "y" : 20,
+        "y" : 30,
         "orientation" : "start"
     },{
         "label" : "Manus",
         "x" : width / 2 + ( unit * 2),
-        "y" : 20,
+        "y" : 30,
         "orientation" : "start"
     },{
         "label" : "Dead",
