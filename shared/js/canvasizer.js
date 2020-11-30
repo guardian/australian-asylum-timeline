@@ -175,6 +175,7 @@ class Canvasizer {
 
             });
 
+            /*
             self.context.font = "12px Arial";
             self.context.fillStyle = 'black'
             //self.context.textAlign = "center";
@@ -194,6 +195,7 @@ class Canvasizer {
                 }
 
             }
+            */
 
             self.context.restore();
 
@@ -299,8 +301,8 @@ class Canvasizer {
 
         var self = this
 
-        var outerRadius = 1500;
-        var innerRadius = 100;
+        var outerRadius = 100;
+        var innerRadius = 20;
         var angle = Math.random() * Math.PI * 2;
         var strength = Math.random() * (-0.1 - -0.3) + -0.3;
         var distance = Math.random() * (outerRadius - innerRadius) + innerRadius;
