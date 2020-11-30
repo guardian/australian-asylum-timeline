@@ -22,6 +22,8 @@ class Canvasizer {
 
         this.labels = units.labels
 
+        this.unit = units.unit
+
         this.canvas = document.getElementById('canvas-viz');
 
         this.canvas.width = this.width
@@ -56,25 +58,9 @@ class Canvasizer {
                 .attr("font-size", "20px")
                 .attr("font-weight", "600")
                 .attr("fill", "black")
-                .attr("text-anchor", label.orientation)
+                .attr("text-anchor", "middle") //label.orientation
 
         }
-
-        if (this.isMobile) {
-
-            this.svgSetup()
-
-        } else {
-
-            this.atomized()
-
-        }
-
-    }
-
-    svgSetup() {
-
-        var self = this
 
         for (var i = 0; i < this.xLabel.length; i++) {
 
@@ -86,15 +72,19 @@ class Canvasizer {
 
         this.scale = d3.scaleSqrt().domain([ 0, 1500 ]) .range([2, 35 ]); 
 
-        this.svg.append('g')
-                .selectAll('circle')
-                .data(self.settings)
-                .enter().append('circle')
-                .attr('r',function (d) { return  self.scale(d.value) }) //
-                .attr('fill', function (d) { return d.colour; })
-                .attr("cx", function (d) { return d.x; })
-                .attr("cy", function (d) { return d.y; })
-                .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
+        if (this.isMobile) {
+
+            this.svg.append('g')
+                    .selectAll('circle')
+                    .data(self.settings)
+                    .enter().append('circle')
+                    .attr('r',function (d) { return  self.scale(d.value) }) //
+                    .attr('fill', function (d) { return d.colour; })
+                    .attr("cx", function (d) { return d.x; })
+                    .attr("cy", function (d) { return d.y; })
+                    .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
+
+        }
 
         this.svg.append('g')
                 .selectAll('text')
@@ -105,12 +95,15 @@ class Canvasizer {
                 .text(d => `${d.value}`)
                 .attr('font-size', 12)
                 .attr('dx', function (d) { return d.x; })
-                .attr('dy',function (d) { return d.y + 50; })
+                .attr('dy',function (d) { return (self.isMobile) ? d.y + 50 : d.y + self.unit  })
                 .attr("font-family", "Guardian Text Sans Web,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif")
                 .attr("font-size", "12px")
                 .attr("fill", "black")
                 .attr("text-anchor", 'middle')
                 .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
+        
+        this.atomized()
+
 
     }
 
@@ -118,30 +111,41 @@ class Canvasizer {
 
         var self = this
 
-        this.settings[index].value = value
+        if (this.isMobile) {
 
-        var u = d3.selectAll('circle').data(self.settings);
+            this.settings[index].value = value
 
-        u.enter()
-            .append('circle')
-            .merge(u)
-          .transition()
-            .duration(100)
-            .attr('r',function (d) { return  self.scale(d.value) })
-            .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
+            var u = d3.selectAll('circle').data(self.settings);
 
-        u.exit()
-            .transition()
-            .duration(100)
-            .attr('r', 0)
-          .style('opacity', 0)
-            .each('end', function() {
-                d3.select(this).remove();
-            });
+            u.enter()
+                .append('circle')
+                .merge(u)
+              .transition()
+                .duration(100)
+                .attr('r',function (d) { return  self.scale(d.value) })
+                .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
+
+            u.exit()
+                .transition()
+                .duration(100)
+                .attr('r', 0)
+              .style('opacity', 0)
+                .each('end', function() {
+                    d3.select(this).remove();
+                });
+
+        }
 
         var t = d3.selectAll('.circle-values').data(self.settings)
-                    .text(d => `${d.value}`)
+                    .text((d,i) => (self.isMobile) ? `${self.settings[i].mobi}${d.value}` : `${self.settings[i].value} ${self.settings[i].location}`)
                     .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
+                    .append("tspan")
+                    .text((d,i) => {
+                        return (self.settings[i].secondary && !self.isMobile) ? `${self.current[self.settings[i].sid]}` : ''
+                    })
+                    .attr("x", 0)
+                    .attr("dx", function (d) { return d.x; })
+                    .attr("dy", 16);
     }
 
     atomized() {
@@ -170,7 +174,7 @@ class Canvasizer {
 
                 self.context.beginPath();
                 self.context.arc(d.x, d.y, d.radius, 0, 2 * Math.PI, true);
-                self.context.fillStyle = 'lightblue'
+                self.context.fillStyle = d.colour
                 self.context.fill();
 
             });
@@ -209,20 +213,9 @@ class Canvasizer {
 
         for (const cluster of this.settings) {
 
-            if (this.isMobile) {
+            this.updateSVG(+d[cluster.key], cluster.index)
 
-                // Update SVG circles and labels
-
-                this.updateSVG(+d[cluster.key], cluster.index)
-
-
-            } else {
-
-                console.log("Not mobile")
-
-                this.render(+d[cluster.key], cluster.index, cluster.location)
-
-            }
+            this.render(+d[cluster.key], cluster.index, cluster.location)
 
         }
     }
@@ -314,7 +307,8 @@ class Canvasizer {
             category: index,
             x: x,
             y: y,
-            strength: strength
+            strength: strength,
+            colour: this.settings[index].colour
         }
 
     }

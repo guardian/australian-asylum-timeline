@@ -86,7 +86,8 @@ export default function mobile(width, height) {
         xLabel : xLabel,
         yLabel : yLabel,
         labels : labels,
-        isMobile : true
+        isMobile : true,
+        unit : unit
     }
 
     return units

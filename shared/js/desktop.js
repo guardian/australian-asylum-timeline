@@ -10,14 +10,16 @@ export default function desktop(width, height) {
 
     var horizantal_unit = horizantal / 2
 
-    var xCenter = [ horizantal_unit, 
-                    horizantal_unit + ( third * 3 ),
-                    horizantal_unit + ( horizantal * 2 ) - ( third * 4 ), 
-                    horizantal_unit + ( horizantal * 2 ) - ( third ), 
-                    horizantal_unit, 
-                    horizantal_unit, 
-                    horizantal_unit + horizantal, 
-                    horizantal_unit + ( horizantal * 2 ) ]
+    var horizantal = width / 4
+
+    var xCenter = [horizantal / 2, 
+                    horizantal / 2 + horizantal,
+                    horizantal / 2 + ( horizantal * 2), 
+                    horizantal / 2 + ( horizantal * 3), 
+                    width / 2, 
+                    width / 2 - panel, 
+                    width / 2, 
+                    width / 2 + panel]
 
     var yCenter = [ unit, 
                     unit, 
@@ -31,11 +33,11 @@ export default function desktop(width, height) {
     var xLabel =  [ 0, 
                     width / 2 / 2,
                     width / 2, 
-                    horizantal_unit * 5, 
-                    0, 
-                    0, 
-                    horizantal_unit * 2, 
-                    horizantal_unit * 4 ]
+                    horizantal / 2 + ( horizantal * 3), 
+                    width / 2, 
+                    width / 2 - panel, 
+                    width / 2, 
+                    width / 2 + panel ]
 
     var yLabel = [  panel - 20, 
                     panel - 20, 
@@ -48,32 +50,32 @@ export default function desktop(width, height) {
 
     var labels = [{
         "label" : "Nauru",
-        "x" : 0,
+        "x" : ( width / 2 ) / 2,
         "y" : 20,
         "orientation" : "start"
     },{
         "label" : "Manus",
-        "x" : width / 2,
+        "x" : width / 2 + ( unit * 2),
         "y" : 20,
         "orientation" : "start"
     },{
         "label" : "Dead",
-        "x" : 0,
-        "y" : panel + 30,
+        "x" : width / 2,
+        "y" : panel + 50,
         "orientation" : "start"
     },{
         "label" : "Australia",
-        "x" : 0,
+        "x" : width / 2 - panel,
         "y" : panel * 2 + 40,
         "orientation" : "start"
     },{
         "label" : "Resettled",
-        "x" : horizantal_unit * 2,
+        "x" : width / 2,
         "y" : panel * 2 + 40,
         "orientation" : "start"
     },{
         "label" : "Returned",
-        "x" : horizantal_unit * 4,
+        "x" : width / 2 + panel ,
         "y" : panel * 2 + 40,
         "orientation" : "start"
     }]
@@ -86,7 +88,8 @@ export default function desktop(width, height) {
         xLabel : xLabel,
         yLabel : yLabel,
         labels : labels,
-        isMobile : false
+        isMobile : false,
+        unit : unit
     }
 
     return units
