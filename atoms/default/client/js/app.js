@@ -84,7 +84,7 @@ window.addEventListener("resize", function() {
 
     document.body.data = setTimeout( function() { 
 
-      location.reload();
+      // Add resizer stuff
 
     }, 200);
 
