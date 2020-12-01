@@ -7,7 +7,9 @@ export default function getUnits(dims) {
 
     var height = dims[1]
 
-    var isMobile = ( window.innerWidth < 740 ) ? true : false ;
+    console.log(width, height, document.body.clientWidth  )
+
+    var isMobile = ( document.body.clientWidth < 740 ) ? true : false ; //window.innerWidth
 
     var units = (isMobile) ? mobile(width, height) : desktop(width, height) ;
 

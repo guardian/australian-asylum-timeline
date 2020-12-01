@@ -7,7 +7,8 @@
 	"sid" : "s1",
 	"mid" : 0,
 	"colour" : "#9970ac",
-	"value" : 0
+	"value" : 0,
+	"mv" : 0
 },{
 	"index" : 1,
 	"location" : "in the community",
@@ -17,7 +18,8 @@
 	"sid" : "s2",
 	"mid" : 1,
 	"colour" : "#2aabe4",
-	"value" : 0
+	"value" : 0,
+	"mv" : 0
 },{
 	"index" : 2,
 	"location" : "in detention",
@@ -27,7 +29,8 @@
 	"sid" : "s3",
 	"mid" : 2,
 	"colour" : "#9970ac",
-	"value" : 0
+	"value" : 0,
+	"mv" : 0
 },{
 	"index" : 3,
 	"location" : "in the community",
@@ -37,7 +40,8 @@
 	"sid" : "s4",
 	"mid" : 3,
 	"colour" : "#2aabe4",
-	"value" : 0
+	"value" : 0,
+	"mv" : 0
 },{
 	"index" : 4,
 	"location" : "dead since 2013",
@@ -47,7 +51,8 @@
 	"sid" : null,
 	"mid" : 4,
 	"colour" : "#eb0949",
-	"value" : 0
+	"value" : 0,
+	"mv" : 0
 },{
 	"index" : 5,
 	"location" : "in Australia",
@@ -57,7 +62,8 @@
 	"sid" : "s5",
 	"mid" : 6,
 	"colour" : "#5ab4ab",
-	"value" : 0
+	"value" : 0,
+	"mv" : 0
 },{
 	"index" : 6,
 	"location" : "resettled in another country",
@@ -67,7 +73,8 @@
 	"sid" : "s6",
 	"mid" : 7,
 	"colour" : "#f4a682",
-	"value" : 0
+	"value" : 0,
+	"mv" : 0
 },{
 	"index" : 7,
 	"location" : "returned to home country",
@@ -77,5 +84,6 @@
 	"sid" : "s7",
 	"mid" : 5,
 	"colour" : "#fcb863",
-	"value" : 0
+	"value" : 0,
+	"mv" : 0
 }]

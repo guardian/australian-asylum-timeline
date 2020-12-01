@@ -1,6 +1,6 @@
 export default function desktop(width, height) {
 
-    var panel = height / 3
+    var panel = (width > height) ? height / 3 : width / 3 ;
 
     var horizantal = width / 3
 

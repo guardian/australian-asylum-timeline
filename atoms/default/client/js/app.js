@@ -86,6 +86,13 @@ window.addEventListener("resize", function() {
 
       // Add resizer stuff
 
+      const dimensions = getDimensions(document.querySelector("#canvas-container"))
+
+      const units = getUnits(dimensions)
+
+      viz.resize(units, settings)
+
+
     }, 200);
 
 });
