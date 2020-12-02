@@ -226,22 +226,22 @@ canvas {
 
 .content__main-column {
   box-sizing: border-box;
+
+  @include mq($until: tablet) {
+    width: 100%;
+    min-width: 100%;
+  }
+
 }
 
 .canvas-wrapper {
   @include mq(mobile) {
     display: flex;
-    margin-left: 10px;
+    margin-left: 0px;
   }
   @include mq(desktop) {
     display: block;
     margin-left: 0;
-  }
-}
-
-.ios, .android {
-  .canvas-wrapper {
-    padding-top: 64px;
   }
 }
 
@@ -280,23 +280,14 @@ canvas {
   z-index: 99;
 }
 
-.ticker__date {
-  display: none;
-  @include mq($until: tablet) {
-    padding-left: 10px;
-  }
-}
-
 #canvas-viz {
   @include mq($until: tablet) {
     display: none;
   }
 }
 
-
-
-.ticker__date {
-  font-family: "Guardian Headline Full";
-  font-weight: 600;
-  color: #c50812;
+.ios, .android {
+  .canvas-wrapper {
+    padding-top: 64px;
+  }
 }

@@ -66,7 +66,9 @@
   position: -webkit-sticky;
   position: sticky;
   width: 100%;
-  top: 0;
+  min-width: 100%;
+  top: 0px;
+  left: 0px;
   height: auto;
   max-height: 100vh;
 
@@ -285,13 +287,20 @@
 }
 
 .ios, .android {
-    .date-bullet--small {
-        transform: translate(-15px, 10px);
+
+  .scroll-inner {
+      
+    @include mq($until: tablet) {
+      margin-left: -10px;
+      width: 100%;
     }
+
+  }
+
+
+
+  .date-bullet--small {
+    transform: translate(-15px, 10px);
+  }
 }
 
-// #scrolly-1 {
-//     @include mq(mobile) {
-//         margin-bottom
-//     }
-// }
