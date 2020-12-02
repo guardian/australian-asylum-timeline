@@ -8,8 +8,6 @@ import pointsWithFeature from 'shared/js/data.json'
 import getUnits from 'shared/js/getUnits'
 import Canvasizer from "shared/js/canvasizer"
 
-const dateCt = d3.select('.ticker__date')
-
 const scrollText = d3.select(".scroll-text")
 
 const dimensions = getDimensions(document.querySelector("#canvas-container"))
@@ -67,8 +65,6 @@ pointsWithFeature
   if (i < pointsWithFeature.length) {
 
     bullets.forEach((b, j) => j <= i ? b.classList.add('date-bullet--full') : b.classList.remove('date-bullet--full'))
-
-    dateCt.html(d.date)
 
     viz.update(d)
 

@@ -36,7 +36,7 @@ class Canvasizer {
 
         this.svg
             .style("width", this.width + 'px')
-            .style("height", this.height + 'px');
+            .style("height", (this.height + 60) + 'px');
 
         this.current = null
 
@@ -50,6 +50,17 @@ class Canvasizer {
 
         var self = this
 
+        this.date = this.svg.append("text")
+            .attr("x", self.width / 2)
+            .attr("y", function (d) { return  (self.isMobile) ? self.height - 5 : self.height + 40 })
+            .text("")
+            .attr("font-family", "Guardian Headline Full")
+            .attr("font-size", "20px")
+            .attr("font-weight", "600")
+            .attr("fill", "#c50812")
+            .attr("text-anchor", "middle")
+            .attr('id', "circle-labels")
+
         for (const label of this.labels) {
 
             this.svg.append("text")
@@ -61,6 +72,7 @@ class Canvasizer {
                 .attr("font-weight", "600")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") //label.orientation
+                .attr('class', "circle-labels")
 
         }
 
@@ -89,17 +101,16 @@ class Canvasizer {
         }
 
         this.svg.append('g')
-                .selectAll('text')
+                .selectAll('.circle-labels')
                 .data(self.settings)
                 .enter()
                 .append('text')
                 .attr('class', "circle-values")
                 .text(d => `${d.value}`)
-                .attr('font-size', 12)
                 .attr('dx', function (d) { return d.x; })
                 .attr('dy',function (d) { return (self.isMobile) ? d.y + 50 : d.y + ( self.unit - 20) })
                 .attr("font-family", "Guardian Text Sans Web,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif")
-                .attr("font-size", "12px")
+                .attr("font-size", function (d) { return  (self.isMobile) ? "10px" : "12px" })
                 .attr("fill", "black")
                 .attr("text-anchor", 'middle')
                 .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
@@ -190,6 +201,8 @@ class Canvasizer {
     update(d) {
 
         this.current  = d
+
+        this.date.text(d.date)
 
         for (const cluster of this.settings) {
 
