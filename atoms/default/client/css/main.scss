@@ -4,6 +4,7 @@
 @import "scrolly";
 @import "enhancer";
 @import "header";
+@import "tippy";
 
 
 // Uncomment for embeds
@@ -12,7 +13,9 @@
 //@import "fullscreen";
 
 
-
+.info-ball {
+  cursor: pointer;
+}
 
 .element-atom,
 .interactive-atom {

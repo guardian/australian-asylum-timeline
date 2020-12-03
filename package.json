@@ -52,6 +52,8 @@
     "mkdirp": "^0.5.1",
     "request-promise": "^4.2.6",
     "terser-webpack-plugin": "^4.2.2",
+    "tippy.js": "^6.2.7",
+    "tooltip": "^1.6.1",
     "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }
