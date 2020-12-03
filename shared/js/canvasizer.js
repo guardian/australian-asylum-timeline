@@ -198,7 +198,9 @@ class Canvasizer {
 
     }
 
-    update(d) {
+    update(d, i=0) {
+
+        console.log(d.date, i)
 
         this.current  = d
 

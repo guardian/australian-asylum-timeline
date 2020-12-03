@@ -19,22 +19,41 @@ const viz = new Canvasizer(units, settings)
 pointsWithFeature
 .concat([{}, {}, {}])
 .forEach((d, i) => {
-    if (i <= pointsWithFeature.length -1) {
+    if (i <= pointsWithFeature.length) {
     const div = scrollText
     .append('div')
-    .attr('class', d.keyDay === "TRUE" ? 'scroll-text__inner' : 'scroll-text__inner scroll-text__inner--half')
+    .attr('class', () => {
+
+      if (d.keyDay === "TRUE") {
+
+        return (d.profile != "") ? 'scroll-text__inner scroll-text__profile' : 'scroll-text__inner' ;
+
+      } else {
+
+        return 'scroll-text__inner scroll-text__inner--half'
+
+      }
+
+    })
+
+    var profile = (d.profile!="") ?  `<br/><a href="${d.read_more}" class="asylum-timeline__component-button">
+            <span>Read more</span>
+            <svg class="asylum-timeline__icon" width="24" height="22" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.0046H19.6395L11.9377 21.0205L12.939 22L23.6444 11.5023V10.4977L12.939 0L11.9377 0.979452L19.6395 9.99543H0V12.0046Z"></path>
+            </svg>
+        </a>` : "" ;
 
     if (d.keyDay === "TRUE") {
       div.html(
-        `<div class="scroll-text__div div-key">
+        `<div data-index="${i}" class="scroll-text__div div-key">
           <div class='date-bullet ${i === 0 ? 'date-bullet--full' : ''}'>&nbsp;</div>
           <h2 class='h3-key-date'><span>${d.date}</span></h2>
-          <p>${d.event_text}</p>
+          <p>${d.event_text}${profile}</p>
         </div>`
       )
     } else {
       div.html(
-        `<div class="scroll-text__div">
+        `<div data-index="${i}" class="scroll-text__div">
           <div class='date-bullet date-bullet--small'>&nbsp;</div>
         </div>`
       )
@@ -62,11 +81,15 @@ pointsWithFeature
 .concat([{}, {}, {}])
 .forEach((d, i) => scrolly.addTrigger({ num: i, do: () => {
 
-  if (i < pointsWithFeature.length) {
+  if (i <= pointsWithFeature.length) {
 
     bullets.forEach((b, j) => j <= i ? b.classList.add('date-bullet--full') : b.classList.remove('date-bullet--full'))
 
-    viz.update(d)
+    if (i!=99) {
+
+      viz.update(d,i)
+
+    }
 
   }
   
