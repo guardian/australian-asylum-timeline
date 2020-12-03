@@ -159,7 +159,7 @@ class Canvasizer {
         this.simulation = d3.forceSimulation(self.nodes)
           .force('charge', d3.forceManyBody().strength(-4))
           .force('x', d3.forceX().x((d) => self.xCenter[d.category]).strength(0.8))
-          .force('y', d3.forceY().y((d) => self.yCenter[d.category]).strength(1))
+          .force('y', d3.forceY().y((d) => self.yCenter[d.category]).strength(0.8))
           .force('collision', d3.forceCollide().radius((d) => d.radius).iterations(16))
           .alphaDecay(0.001)
           .on('tick', ticked);
@@ -298,10 +298,14 @@ class Canvasizer {
         var innerRadius = 20;
         var angle = Math.random() * Math.PI * 2;
         var strength = Math.random() * (-0.1 - -0.3) + -0.3;
+        // var strength = -0.3
         var distance = Math.random() * (outerRadius - innerRadius) + innerRadius;
         var x = Math.cos(angle) * distance + this.xCenter[index];
         var y = Math.sin(angle) * distance + this.yCenter[index];
     
+        // var x = this.xCenter[index];
+        // var y = this.yCenter[index];
+
         return { 
             radius: 1.5,
             category: index,
