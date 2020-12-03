@@ -36,9 +36,11 @@ class Canvasizer {
 
         this.svg
             .style("width", this.width + 'px')
-            .style("height", this.height + 'px');
+            .style("height", (this.height + 60) + 'px');
 
         this.current = null
+
+        this.simulation = null
 
         this.setup()
 
@@ -47,6 +49,17 @@ class Canvasizer {
     setup() {
 
         var self = this
+
+        this.date = this.svg.append("text")
+            .attr("x", self.width / 2)
+            .attr("y", function (d) { return  (self.isMobile) ? self.height - 5 : self.height + 40 })
+            .text("")
+            .attr("font-family", "Guardian Headline Full")
+            .attr("font-size", "20px")
+            .attr("font-weight", "600")
+            .attr("fill", "#c50812")
+            .attr("text-anchor", "middle")
+            .attr('id', "circle-labels")
 
         for (const label of this.labels) {
 
@@ -59,6 +72,7 @@ class Canvasizer {
                 .attr("font-weight", "600")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") //label.orientation
+                .attr('class', "circle-labels")
 
         }
 
@@ -87,17 +101,16 @@ class Canvasizer {
         }
 
         this.svg.append('g')
-                .selectAll('text')
+                .selectAll('.circle-labels')
                 .data(self.settings)
                 .enter()
                 .append('text')
                 .attr('class', "circle-values")
                 .text(d => `${d.value}`)
-                .attr('font-size', 12)
                 .attr('dx', function (d) { return d.x; })
-                .attr('dy',function (d) { return (self.isMobile) ? d.y + 50 : d.y + self.unit  })
+                .attr('dy',function (d) { return (self.isMobile) ? d.y + 50 : d.y + ( self.unit - 20) })
                 .attr("font-family", "Guardian Text Sans Web,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif")
-                .attr("font-size", "12px")
+                .attr("font-size", function (d) { return  (self.isMobile) ? "10px" : "12px" })
                 .attr("fill", "black")
                 .attr("text-anchor", 'middle')
                 .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
@@ -113,7 +126,7 @@ class Canvasizer {
 
         if (this.isMobile) {
 
-            this.settings[index].value = value
+            this.settings[index].mv = value
 
             var u = d3.selectAll('circle').data(self.settings);
 
@@ -122,8 +135,8 @@ class Canvasizer {
                 .merge(u)
               .transition()
                 .duration(100)
-                .attr('r',function (d) { return  self.scale(d.value) })
-                .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
+                .attr('r',function (d) { return  self.scale(d.mv) })
+                .attr("display", function (d) { return (d.mv>0) ? "block" : "none" })
 
             u.exit()
                 .transition()
@@ -179,37 +192,19 @@ class Canvasizer {
 
             });
 
-            /*
-            self.context.font = "12px Arial";
-            self.context.fillStyle = 'black'
-            //self.context.textAlign = "center";
-
-            for (var i = 0; i < self.settings.length; i++) {
-
-                if (self.settings[i].value > 0) {
-
-                    self.context.fillText(`${self.settings[i].value} ${self.settings[i].location}`, self.xLabel[self.settings[i].index], self.yLabel[self.settings[i].index]);
-
-                    if (self.settings[i].secondary) {
-
-                        self.context.fillText(`${self.current[self.settings[i].sid]}`, self.xLabel[self.settings[i].index], self.yLabel[self.settings[i].index] + 15);
-
-                    }
-
-                }
-
-            }
-            */
-
             self.context.restore();
 
         }
 
     }
 
-    update(d) {
+    update(d, i=0) {
+
+        console.log(d.date, i)
 
         this.current  = d
+
+        this.date.text(d.date)
 
         for (const cluster of this.settings) {
 
@@ -222,7 +217,7 @@ class Canvasizer {
 
     render(value, index, location) {
 
-        console.log(`${location}: ${value}`)
+        //console.log(`${location}: ${value}`)
 
         var self = this
 
@@ -314,6 +309,60 @@ class Canvasizer {
             strength: strength,
             colour: this.settings[index].colour
         }
+
+    }
+
+    resize(units, settings) {
+
+        console.log("Redaw")
+
+        var self = this
+
+        if (this.simulation!=null) {
+
+            this.simulation.stop()
+
+        }
+
+        this.svg.selectAll("*").remove();
+
+        this.width = units.width
+
+        this.height = units.height
+
+        this.isMobile = units.isMobile
+
+        for (const settings of this.settings) {
+
+            settings.value = 0
+
+        }
+
+        this.xCenter = units.xCenter
+
+        this.yCenter = units.yCenter
+
+        this.xLabel = units.xLabel
+
+        this.yLabel = units.yLabel
+
+        this.labels = units.labels
+
+        this.unit = units.unit
+
+        this.canvas.width = this.width
+
+        this.canvas.height = this.height
+
+        this.svg
+            .style("width", this.width + 'px')
+            .style("height", this.height + 'px');
+
+        this.simulation = null
+
+        this.setup()
+
+        this.update(this.current)
 
     }
 
