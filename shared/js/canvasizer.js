@@ -1,5 +1,6 @@
 import * as d3 from 'd3'
 import tippy from 'tippy.js';
+import getOffset from 'shared/js/getOffset'
 //import 'tippy.js/dist/tippy.css';
 
 class Canvasizer {
@@ -72,12 +73,12 @@ class Canvasizer {
                 .attr("font-size", "20px")
                 .attr("font-weight", "600")
                 .attr("fill", "black")
-                .attr("text-anchor", "middle") //label.orientation
+                .attr("text-anchor", "middle")
                 .attr('class', "circle-labels")
                 
             let tooltip = this.svg.append("image")
               .attr("xlink:href", "<%= path %>/info.svg")
-              .attr("x", label.x + label.offset)
+              .attr("x", getOffset(label.x, label.label))
               .attr("y", label.y - 15)
               .attr("width", 15)
               .attr("height", 15)
