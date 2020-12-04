@@ -50,7 +50,7 @@ export default function mobile(width, height) {
         "label" : "Nauru",
         "x" : unit,
         "y" : 20,
-        "offset" : 50,
+        "offset" : 10,
         "tooltip": "Explainer text"
     },{
         "label" : "Manus",

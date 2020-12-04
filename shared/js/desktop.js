@@ -52,37 +52,37 @@ export default function desktop(width, height) {
         "label" : "Nauru",
         "x" : ( width / 2 ) / 2,
         "y" : 30,
-        "offset" : 55,
+        "offset" : 35,
         "tooltip": "Explainer text"
     },{
-        "label" : "Manus",
+        "label" : "Manus & PNG",
         "x" : width / 2 + ( unit * 2),
         "y" : 30,
-        "offset" : 55,
+        "offset" : 80,
         "tooltip": "Explainer text"
     },{
         "label" : "Dead",
         "x" : width / 2,
         "y" : panel + 50,
-        "offset" : 50,
+        "offset" : 35,
         "tooltip": "Explainer text"
     },{
         "label" : "Australia",
         "x" : width / 2 - panel,
         "y" : panel * 2 + 40,
-        "offset" : 70,
+        "offset" : 55,
         "tooltip": "Explainer text"
     },{
         "label" : "Resettled",
         "x" : width / 2,
         "y" : panel * 2 + 40,
-        "offset" : 75,
+        "offset" : 55,
         "tooltip": "Explainer text"
     },{
         "label" : "Returned",
         "x" : width / 2 + panel ,
         "y" : panel * 2 + 40,
-        "offset" : 75,
+        "offset" : 55,
         "tooltip": "Explainer text"
     }]
 
