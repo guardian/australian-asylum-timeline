@@ -1,4 +1,6 @@
 import * as d3 from 'd3'
+import tippy from 'tippy.js';
+//import 'tippy.js/dist/tippy.css';
 
 class Canvasizer {
 
@@ -59,7 +61,6 @@ class Canvasizer {
             .attr("font-weight", "600")
             .attr("fill", "#c50812")
             .attr("text-anchor", "middle")
-            .attr('id', "circle-labels")
 
         for (const label of this.labels) {
 
@@ -73,8 +74,19 @@ class Canvasizer {
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") //label.orientation
                 .attr('class', "circle-labels")
+                
+            let tooltip = this.svg.append("image")
+              .attr("xlink:href", "<%= path %>/info.svg")
+              .attr("x", label.x + label.offset)
+              .attr("y", label.y - 15)
+              .attr("width", 20)
+              .attr("height", 20)
+              .attr('class', "info-ball")
+              .attr("data-tippy-content",label.tooltip)
 
         }
+
+        tippy('[data-tippy-content]');
 
         for (var i = 0; i < this.xLabel.length; i++) {
 

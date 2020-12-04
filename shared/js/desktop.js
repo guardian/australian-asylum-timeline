@@ -52,32 +52,38 @@ export default function desktop(width, height) {
         "label" : "Nauru",
         "x" : ( width / 2 ) / 2,
         "y" : 30,
-        "orientation" : "start"
+        "offset" : 55,
+        "tooltip": "Explainer text"
     },{
         "label" : "Manus",
         "x" : width / 2 + ( unit * 2),
         "y" : 30,
-        "orientation" : "start"
+        "offset" : 55,
+        "tooltip": "Explainer text"
     },{
         "label" : "Dead",
         "x" : width / 2,
         "y" : panel + 50,
-        "orientation" : "start"
+        "offset" : 50,
+        "tooltip": "Explainer text"
     },{
         "label" : "Australia",
         "x" : width / 2 - panel,
         "y" : panel * 2 + 40,
-        "orientation" : "start"
+        "offset" : 70,
+        "tooltip": "Explainer text"
     },{
         "label" : "Resettled",
         "x" : width / 2,
         "y" : panel * 2 + 40,
-        "orientation" : "start"
+        "offset" : 75,
+        "tooltip": "Explainer text"
     },{
         "label" : "Returned",
         "x" : width / 2 + panel ,
         "y" : panel * 2 + 40,
-        "orientation" : "start"
+        "offset" : 75,
+        "tooltip": "Explainer text"
     }]
 
     var units = {
