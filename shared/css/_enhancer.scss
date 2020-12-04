@@ -8,6 +8,26 @@
 }
 
 
+.content__main-column--interactive {
+  >p, >h2 {
+    @include mq(tablet) {
+      max-width: 620px;
+    }
+    @include mq(leftCol) {
+      margin-left: 160px;
+    }
+
+    @include mq(wide) {
+        margin-left: 240px;
+    }
+  }
+}
+
+.content__main-column--interactive .element--immersive {
+  margin-bottom: 0 !important;
+}
+
+/*
 .content .gs-container, .content-footer .gs-container {
   box-sizing: border-box;
   width: 100%;
@@ -15,7 +35,7 @@
   padding-right: 0 !important;
   box-sizing: border-box;
 }
-
+*/
 .content__main-column {
   width: calc(100% - 2px)!important;
   
