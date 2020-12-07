@@ -16,6 +16,8 @@ const units = getUnits(dimensions)
 
 const viz = new Canvasizer(units, settings)
 
+var current = 0
+
 pointsWithFeature
 .concat([{}, {}, {}])
 .forEach((d, i) => {
@@ -37,7 +39,7 @@ pointsWithFeature
     })
 
     var profile = (d.profile!="") ?  `<br/><a href="${d.read_more}" class="asylum-timeline__component-button">
-            <span>Read ${d.profile} story here</span>
+            <span>Read ${d.profile} story</span>
             <svg class="asylum-timeline__icon" width="24" height="22" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.0046H19.6395L11.9377 21.0205L12.939 22L23.6444 11.5023V10.4977L12.939 0L11.9377 0.979452L19.6395 9.99543H0V12.0046Z"></path>
             </svg>
@@ -45,20 +47,22 @@ pointsWithFeature
 
     if (d.keyDay === "TRUE") {
 
-      let html = (d.profile!="") ? `<div data-index="${i}" class="scroll-text__div div-key" style="background-image: url(<%= path %>/${d.profile_pic})">` : `<div data-index="${i}" class="scroll-text__div div-key">`
+      let html = (d.profile!="") ? `<div data-index="${i}" class="scroll-text__div div-key" style="background-image: url(<%= path %>/${d.profile_pic})">"` : `<div data-index="${i}" class="scroll-text__div div-key">`
           
-       html += `<div class='date-bullet ${i === 0 ? 'date-bullet--full' : ''}'>&nbsp;</div>
+      html += `<div class='date-bullet ${i === 0 ? 'date-bullet--full' : ''}'>&nbsp;</div>
           <h2 class='h3-key-date'><span>${d.date}</span></h2>
-          <p>${d.event_text}${profile}</p>
-        </div>`
+          <p>${d.event_text}${profile}</p>`
+
+      html += (d.profile!="") ? `<div class="profile-overlay"></div></div>` : `</div>`
 
       div.html(html)
         
     } else {
+
       div.html(
         `<div data-index="${i}" class="scroll-text__div">
           <div class='date-bullet date-bullet--small'>&nbsp;</div>
-          <div class='date-label-small'>${d.date}</div>
+          <div class='date-label-small'>${(d.date!=undefined)?d.date:""}</div>
         </div>`
       )
     }
@@ -92,6 +96,18 @@ pointsWithFeature
     if (i!=99) {
 
       viz.update(d,i)
+
+      current = i
+
+    } else {
+
+      if (current < 150) {
+
+        viz.update(d,i)
+
+        current = i
+
+      }
 
     }
 

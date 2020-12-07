@@ -323,18 +323,24 @@
 .scroll-text__profile {
 
   .date-bullet--full {
-    background: #f9b000;
-    border: #f9b000;
+    background: #f59331;
+    border: #f59331;
+    z-index: 100;
   }
   .scroll-text__div h2 span:last-of-type {
     color: white;
+    z-index: 100;
+    position: relative;
   }
   p {
     color: white;
+    z-index: 100;
+    position: relative;
   }
 }
 
 .asylum-timeline__component-button {
     margin-top: 10px;
-    @include component-button($bgColor: #f9b000, $color: #052962, $hoverBgColor: #f9b000);
+    position: relative;
+    @include component-button($bgColor: #f59331, $color: black, $hoverBgColor: #f59331);
 }
