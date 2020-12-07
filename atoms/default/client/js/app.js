@@ -8,9 +8,6 @@ import pointsWithFeature from 'shared/js/data.json'
 import getUnits from 'shared/js/getUnits'
 import Canvasizer from "shared/js/canvasizer"
 
- 
-
-
 const scrollText = d3.select(".scroll-text")
 
 const dimensions = getDimensions(document.querySelector("#canvas-container"))
@@ -58,6 +55,7 @@ pointsWithFeature
       div.html(
         `<div data-index="${i}" class="scroll-text__div">
           <div class='date-bullet date-bullet--small'>&nbsp;</div>
+          <div class='date-label-small'>${d.date}</div>
         </div>`
       )
     }
@@ -99,6 +97,9 @@ pointsWithFeature
 }}))
 
 scrolly.watchScroll()
+
+viz.update(pointsWithFeature[0])
+
 
 window.addEventListener("resize", function() {
 

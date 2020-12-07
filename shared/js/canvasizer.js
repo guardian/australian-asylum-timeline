@@ -1,5 +1,6 @@
 import * as d3 from 'd3'
 import tippy from 'tippy.js';
+import getOffset from 'shared/js/getOffset'
 //import 'tippy.js/dist/tippy.css';
 
 class Canvasizer {
@@ -38,7 +39,7 @@ class Canvasizer {
 
         this.svg
             .style("width", this.width + 'px')
-            .style("height", (this.height + 60) + 'px');
+            .style("height", this.height + 'px');
 
         this.current = null
 
@@ -52,6 +53,7 @@ class Canvasizer {
 
         var self = this
 
+        /*
         this.date = this.svg.append("text")
             .attr("x", self.width / 2)
             .attr("y", function (d) { return  (self.isMobile) ? self.height - 5 : self.height + 40 })
@@ -60,7 +62,7 @@ class Canvasizer {
             .attr("font-size", "20px")
             .attr("font-weight", "600")
             .attr("fill", "#c50812")
-            .attr("text-anchor", "middle")
+            .attr("text-anchor", "middle") */
 
         for (const label of this.labels) {
 
@@ -72,12 +74,12 @@ class Canvasizer {
                 .attr("font-size", "20px")
                 .attr("font-weight", "600")
                 .attr("fill", "black")
-                .attr("text-anchor", "middle") //label.orientation
+                .attr("text-anchor", "middle")
                 .attr('class', "circle-labels")
                 
             let tooltip = this.svg.append("image")
               .attr("xlink:href", "<%= path %>/info.svg")
-              .attr("x", label.x + label.offset)
+              .attr("x", getOffset(label.x, label.label))
               .attr("y", label.y - 15)
               .attr("width", 15)
               .attr("height", 15)
@@ -215,8 +217,6 @@ class Canvasizer {
         console.log(d.date, i)
 
         this.current  = d
-
-        this.date.text(d.date)
 
         for (const cluster of this.settings) {
 

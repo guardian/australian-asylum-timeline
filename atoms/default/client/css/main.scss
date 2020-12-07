@@ -13,6 +13,11 @@
 //@import "fullscreen";
 
 
+body {
+  background-color: white;
+  color: black;
+}
+
 .info-ball {
   cursor: pointer;
 }
@@ -20,7 +25,6 @@
 .element-atom,
 .interactive-atom {
   margin: 0 !important;
-  background: none !important;
   padding-bottom: 6px !important;
   padding-top: 10px !important;
 }
@@ -138,6 +142,12 @@
   }
 }
 
+.date-label-small {
+  font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 14px;
+  color: darkgrey;
+}
+
 .gv-toll {
   @include mq(mobile) {
     @include fs-titlepiece(1);
@@ -182,6 +192,7 @@ canvas {
 
 .ios,
 .android {
+
   .article {
     overflow: visible !important;
   }
@@ -235,8 +246,36 @@ canvas {
     width: 100%;
     min-width: 100%;
   }
+}
+
+.content__main-column p {
+
+  @include mq($until: tablet) {
+    padding: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+}
+
+.content__main-column--interactive>h2, .content__main-column--interactive>p {
+    @include mq($from: tablet, $until: desktop) {
+      margin-left: 8rem;
+    }
+
+    @include mq($from: desktop, $until: leftCol) {
+      margin-left: 6rem;
+    }
 
 }
+
+.content__standfirst p {
+  @include mq($until: tablet) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
 
 .canvas-wrapper {
   @include mq(mobile) {
@@ -293,5 +332,60 @@ canvas {
 .ios, .android {
   .canvas-wrapper {
     padding-top: 64px;
+  }
+}
+
+
+.content .gs-container {
+
+  @include mq($until: tablet) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+}
+
+.content__head:before {
+  
+  @include mq($until: desktop) {
+    border-left: 0px solid white;
+    border-right: 0px solid white;
+  }
+
+}
+
+.l-side-margins:after {
+  @include mq($until: leftCol) {
+    border-left: 0px solid white;
+    border-right: 0px solid white;
+  }
+}
+
+.l-side-margins:before {
+  @include mq($until: leftCol) {
+    border-left: 0px solid white;
+    border-right: 0px solid white;
+  }
+}
+
+.u-cf .content__meta-container, .u-cf .meta__extras {
+
+  @include mq($until: desktop) {
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+
+
+}
+
+.u-cf .meta__extras {
+    @include mq($from: desktop, $until: leftCol) {
+    margin-left: 6rem;
+    margin-right: 0px;
+
   }
 }

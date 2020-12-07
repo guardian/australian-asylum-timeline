@@ -50,37 +50,31 @@ export default function mobile(width, height) {
         "label" : "Nauru",
         "x" : unit,
         "y" : 20,
-        "offset" : 10,
         "tooltip": "Explainer text"
     },{
         "label" : "Manus",
         "x" : width - unit,
         "y" : 20,
-        "offset" : 50,
         "tooltip": "Explainer text"
     },{
         "label" : "Dead",
         "x" : unit,
         "y" : panel + 25,
-        "offset" : 50,
         "tooltip": "Explainer text"
     },{
         "label" : "Australia",
         "x" : width - unit,
         "y" : panel + 25,
-        "offset" : 50,
         "tooltip": "Explainer text"
     },{
         "label" : "Resettled",
         "x" : unit,
         "y" : panel * 2 + 25,
-        "offset" : 50,
         "tooltip": "Explainer text"
     },{
         "label" : "Returned",
         "x" : width - unit,
         "y" : panel * 2 + 25,
-        "offset" : 50,
         "tooltip": "Explainer text"
     }]
 
