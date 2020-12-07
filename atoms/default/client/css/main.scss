@@ -235,8 +235,24 @@ canvas {
     width: 100%;
     min-width: 100%;
   }
-
 }
+
+.content__main-column p {
+
+  @include mq($until: mobileLandscape) {
+    padding: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+.content__standfirst p {
+  @include mq($until: mobileLandscape) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
 
 .canvas-wrapper {
   @include mq(mobile) {
