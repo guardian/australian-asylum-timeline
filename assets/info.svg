@@ -6,11 +6,11 @@
 	.st0{fill:#231F20;stroke:#9B9B9B;stroke-width:0.75;stroke-miterlimit:10;}
 	.st1{fill:none;}
 	.st2{fill:#9B9B9B;}
-	.st3{font-family:'AS31AgateSans';}
+	.st3{font-family:'GHGuardianHeadline-Bold';}
 	.st4{font-size:18px;}
 </style>
 <path class="st0" d="M0.8,12.5C0.8,6,6,0.8,12.5,0.8s11.7,5.3,11.7,11.7c0,6.5-5.2,11.7-11.7,11.7S0.8,19,0.8,12.5 M0.5,12.5
 	c0,6.6,5.4,12,12,12s12-5.4,12-12s-5.4-12-12-12S0.5,5.9,0.5,12.5"/>
 <rect x="0.5" y="0.5" class="st1" width="24" height="24"/>
-<text transform="matrix(1 0 0 1 9.3333 18.6668)" class="st2 st3 st4">?</text>
+<text transform="matrix(1 0 0 1 9.8331 18.9165)" class="st2 st3 st4">i</text>
 </svg>
