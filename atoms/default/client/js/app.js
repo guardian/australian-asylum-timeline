@@ -55,6 +55,7 @@ pointsWithFeature
       div.html(
         `<div data-index="${i}" class="scroll-text__div">
           <div class='date-bullet date-bullet--small'>&nbsp;</div>
+          <div class='date-label-small'>${d.date}</div>
         </div>`
       )
     }
@@ -96,6 +97,9 @@ pointsWithFeature
 }}))
 
 scrolly.watchScroll()
+
+viz.update(pointsWithFeature[0])
+
 
 window.addEventListener("resize", function() {
 

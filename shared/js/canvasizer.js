@@ -39,7 +39,7 @@ class Canvasizer {
 
         this.svg
             .style("width", this.width + 'px')
-            .style("height", (this.height + 60) + 'px');
+            .style("height", this.height + 'px');
 
         this.current = null
 
@@ -53,6 +53,7 @@ class Canvasizer {
 
         var self = this
 
+        /*
         this.date = this.svg.append("text")
             .attr("x", self.width / 2)
             .attr("y", function (d) { return  (self.isMobile) ? self.height - 5 : self.height + 40 })
@@ -61,7 +62,7 @@ class Canvasizer {
             .attr("font-size", "20px")
             .attr("font-weight", "600")
             .attr("fill", "#c50812")
-            .attr("text-anchor", "middle")
+            .attr("text-anchor", "middle") */
 
         for (const label of this.labels) {
 
@@ -216,8 +217,6 @@ class Canvasizer {
         console.log(d.date, i)
 
         this.current  = d
-
-        this.date.text(d.date)
 
         for (const cluster of this.settings) {
 
