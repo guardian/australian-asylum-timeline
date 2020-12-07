@@ -239,15 +239,27 @@ canvas {
 
 .content__main-column p {
 
-  @include mq($until: mobileLandscape) {
+  @include mq($until: tablet) {
     padding: 0px;
     margin-left: 20px;
     margin-right: 20px;
   }
+  
+}
+
+.content__main-column--interactive>h2, .content__main-column--interactive>p {
+    @include mq($from: tablet, $until: desktop) {
+      margin-left: 8rem;
+    }
+
+    @include mq($from: desktop, $until: leftCol) {
+      margin-left: 6rem;
+    }
+
 }
 
 .content__standfirst p {
-  @include mq($until: mobileLandscape) {
+  @include mq($until: tablet) {
     margin-left: 0px;
     margin-right: 0px;
   }
