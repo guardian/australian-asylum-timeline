@@ -214,8 +214,6 @@ class Canvasizer {
 
     update(d, i=0) {
 
-        console.log(d.date, i)
-
         this.current  = d
 
         for (const cluster of this.settings) {
