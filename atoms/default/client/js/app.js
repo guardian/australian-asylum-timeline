@@ -37,20 +37,23 @@ pointsWithFeature
     })
 
     var profile = (d.profile!="") ?  `<br/><a href="${d.read_more}" class="asylum-timeline__component-button">
-            <span>Read more</span>
+            <span>Read ${d.profile} story here</span>
             <svg class="asylum-timeline__icon" width="24" height="22" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.0046H19.6395L11.9377 21.0205L12.939 22L23.6444 11.5023V10.4977L12.939 0L11.9377 0.979452L19.6395 9.99543H0V12.0046Z"></path>
             </svg>
         </a>` : "" ;
 
     if (d.keyDay === "TRUE") {
-      div.html(
-        `<div data-index="${i}" class="scroll-text__div div-key">
-          <div class='date-bullet ${i === 0 ? 'date-bullet--full' : ''}'>&nbsp;</div>
+
+      let html = (d.profile!="") ? `<div data-index="${i}" class="scroll-text__div div-key" style="background-image: url(<%= path %>/${d.profile_pic})">` : `<div data-index="${i}" class="scroll-text__div div-key">`
+          
+       html += `<div class='date-bullet ${i === 0 ? 'date-bullet--full' : ''}'>&nbsp;</div>
           <h2 class='h3-key-date'><span>${d.date}</span></h2>
           <p>${d.event_text}${profile}</p>
         </div>`
-      )
+
+      div.html(html)
+        
     } else {
       div.html(
         `<div data-index="${i}" class="scroll-text__div">

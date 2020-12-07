@@ -315,14 +315,19 @@
   }
 }
 
+.scroll-text__div {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .scroll-text__profile {
-  background-color: #c70000;
+
   .date-bullet--full {
     background: #f9b000;
     border: #f9b000;
   }
   .scroll-text__div h2 span:last-of-type {
-    color: #f9b000;
+    color: white;
   }
   p {
     color: white;
