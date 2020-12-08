@@ -25,7 +25,7 @@ export default function desktop(width, height) {
                     unit, 
                     unit, 
                     unit, 
-                    height / 2,  
+                    unit + panel,  
                     unit + ( panel * 2 ), 
                     unit + ( panel * 2 ), 
                     unit + ( panel * 2 ) ]
