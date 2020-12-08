@@ -50,32 +50,32 @@ export default function mobile(width, height) {
         "label" : "Nauru",
         "x" : unit,
         "y" : 20,
-        "tooltip": "Explainer text"
+        "tooltip": "People in the Nauru regional processing facility, and living in the Nauruan community"
     },{
         "label" : "Manus",
         "x" : width - unit,
         "y" : 20,
-        "tooltip": "Explainer text"
+        "tooltip": "People in the Manus regional processing facility, and living in the PNG community"
     },{
         "label" : "Dead",
         "x" : unit,
         "y" : panel + 25,
-        "tooltip": "Explainer text"
+        "tooltip": "People who have died while in detention or living in the Nauruan or PNG community or in community detention in Australia"
     },{
         "label" : "Australia",
         "x" : width - unit,
         "y" : panel + 25,
-        "tooltip": "Explainer text"
+        "tooltip": "People in Australia in community detention and on bridging visas"
     },{
         "label" : "Resettled",
         "x" : unit,
         "y" : panel * 2 + 25,
-        "tooltip": "Explainer text"
+        "tooltip": "People permanently settled in another country other than their home country, Australia, Nauru or PNG"
     },{
         "label" : "Returned",
         "x" : width - unit,
         "y" : panel * 2 + 25,
-        "tooltip": "Explainer text"
+        "tooltip": "People who have returned to their home country, either voluntarily or by force"
     }]
 
     var units = {

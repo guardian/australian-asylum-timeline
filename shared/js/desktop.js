@@ -62,12 +62,12 @@ export default function desktop(width, height) {
         "label" : "Dead",
         "x" : width / 2,
         "y" : panel + 50,
-        "tooltip": "People who have died while in detention or living in the Nauruan or PNG community"
+        "tooltip": "People who have died while in detention or living in the Nauruan or PNG community or in community detention in Australia"
     },{
         "label" : "Australia, temporarily",
         "x" : width / 2 - panel,
         "y" : panel * 2 + 40,
-        "tooltip": "People in Australia in community detention, and on bridging and other temporary visas"
+        "tooltip": "People in Australia in community detention and on bridging visas"
     },{
         "label" : "Resettled",
         "x" : width / 2,
@@ -77,7 +77,7 @@ export default function desktop(width, height) {
         "label" : "Returned",
         "x" : width / 2 + panel ,
         "y" : panel * 2 + 40,
-        "tooltip": "People who have returned to their home country, either voluntarily or forced by the Australian government"
+        "tooltip": "People who have returned to their home country, either voluntarily or by force"
     }]
 
     var units = {
