@@ -45,6 +45,8 @@ class Canvasizer {
 
         this.simulation = null
 
+        this.unix = null
+
         this.setup()
 
     }
@@ -163,8 +165,10 @@ class Canvasizer {
 
         }
 
+        //(self.isMobile) ? `${self.settings[i].mobi}${d.value}` : `${self.settings[i].value} ${self.settings[i].location}`
+
         var t = d3.selectAll('.circle-values').data(self.settings)
-                    .text((d,i) => (self.isMobile) ? `${self.settings[i].mobi}${d.value}` : `${self.settings[i].value} ${self.settings[i].location}`)
+                    .text((d,i) => (self.isMobile) ? self.primary(d.value, self.settings[i].index, self.settings[i].contingent, self.settings[i].mobi) : self.secondary(d.value, self.settings[i].index, self.settings[i].contingent, self.settings[i].location))
                     .attr("display", function (d) { return (d.value>0) ? "block" : "none" })
                     .append("tspan")
                     .text((d,i) => {
@@ -173,6 +177,45 @@ class Canvasizer {
                     .attr("x", 0)
                     .attr("dx", function (d) { return d.x; })
                     .attr("dy", 16);
+    }
+
+    primary(value, index, contingent, text) {
+
+        var text = (contingent) ? `${this.contingent(index)}: ` : text
+
+        return `${text}${value}`
+
+    }
+
+    secondary(value, index, contingent, text) {
+
+        var text = (contingent) ? `in ${this.contingent(index).toLowerCase()}` : text
+
+        return `${value} ${text}`
+
+    }
+
+    contingent(index) {
+
+        var date = this.unix
+
+        var label = ""
+
+        if (index === 0) {
+
+            label = (date < 1424437200) ? 'Detention' : 'Camps'
+
+        } else {
+
+            label = (date < 1462024800) ? 'Detention' : 'Camps'
+
+        }
+
+        return label
+
+        //ID 0, Nauru cluster (desktop): change "X in detention" to "X in camps" after 21 Feb 2015 - AB
+
+        // ID 2 Manus cluster (desktop): change "X in detention" to "X in camps" after "1 May 2016" - AB
     }
 
     atomized() {
@@ -217,6 +260,8 @@ class Canvasizer {
         this.date.html(d.date)
 
         this.current  = d
+
+        this.unix = d.unix
 
         for (const cluster of this.settings) {
 

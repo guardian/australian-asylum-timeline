@@ -1,14 +1,15 @@
 [{
 	"index" : 0,
-	"location" : "in detention",
-	"mobi" : "Detention: ",
+	"location" : "in camps",
+	"mobi" : "Cammps: ",
 	"key" : "nauru_detention",
 	"secondary" : true,
 	"sid" : "s1",
 	"mid" : 0,
 	"colour" : "#9970ac",
 	"value" : 0,
-	"mv" : 0
+	"mv" : 0,
+	"contingent" : true
 },{
 	"index" : 1,
 	"location" : "in the community",
@@ -19,18 +20,20 @@
 	"mid" : 1,
 	"colour" : "#2aabe4",
 	"value" : 0,
-	"mv" : 0
+	"mv" : 0,
+	"contingent" : false
 },{
 	"index" : 2,
-	"location" : "in detention",
-	"mobi" : "Detention: ",
+	"location" : "in camps",
+	"mobi" : "Cammps: ",
 	"key" : "manus_detention",
 	"secondary" : true,
 	"sid" : "s3",
 	"mid" : 2,
 	"colour" : "#9970ac",
 	"value" : 0,
-	"mv" : 0
+	"mv" : 0,
+	"contingent" : true
 },{
 	"index" : 3,
 	"location" : "in the community",
@@ -41,7 +44,8 @@
 	"mid" : 3,
 	"colour" : "#2aabe4",
 	"value" : 0,
-	"mv" : 0
+	"mv" : 0,
+	"contingent" : false
 },{
 	"index" : 4,
 	"location" : "dead since 2013",
@@ -52,7 +56,8 @@
 	"mid" : 4,
 	"colour" : "#eb0949",
 	"value" : 0,
-	"mv" : 0
+	"mv" : 0,
+	"contingent" : false
 },{
 	"index" : 5,
 	"location" : "in Australia",
@@ -63,7 +68,8 @@
 	"mid" : 6,
 	"colour" : "#5ab4ab",
 	"value" : 0,
-	"mv" : 0
+	"mv" : 0,
+	"contingent" : false
 },{
 	"index" : 6,
 	"location" : "resettled in another country",
@@ -74,7 +80,8 @@
 	"mid" : 7,
 	"colour" : "#f4a682",
 	"value" : 0,
-	"mv" : 0
+	"mv" : 0,
+	"contingent" : false
 },{
 	"index" : 7,
 	"location" : "returned to home country",
@@ -85,5 +92,6 @@
 	"mid" : 5,
 	"colour" : "#fcb863",
 	"value" : 0,
-	"mv" : 0
+	"mv" : 0,
+	"contingent" : false
 }]

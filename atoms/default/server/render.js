@@ -1,5 +1,6 @@
 import mainHTML from "./atoms/default/server/templates/main.html!text"
 import rp from 'request-promise'
+import moment from 'moment'
 import { writeFileSync } from 'fs'
 
 var categories = [	'manus_detention',
@@ -58,7 +59,7 @@ export async function render() {
 		row.s5 = `${row.australia_kids} kids, ${row.australia - row.australia_kids} adults`
 		row.s6 = `${row.resettled_us} in the US, ${row.resettled_third_country - row.resettled_us} elsewhere`
 		row.s7 = `${row.returned_voluntary} voluntary, ${row.returned_forced} by force`
-
+		row.unix = moment(row.date, "D MMMM YYYY").unix();
 		row.keyDay = (row.event_text!="") ? "TRUE" : "" ;
 	})
 

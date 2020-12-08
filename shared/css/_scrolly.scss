@@ -308,12 +308,32 @@
 
   }
 
-
-
   .date-bullet--small {
     transform: translate(-15px, 10px);
   }
 }
+
+.buffer {
+  height: 0px;
+  background-color: white;
+}
+
+.android {
+
+  .buffer {
+    height: 90px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    left: 0px;
+  }
+
+  .scroll-inner {
+    top: 80px;
+  }
+
+}
+
 
 .scroll-text__div {
   background-size: cover;
