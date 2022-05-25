@@ -1,7 +1,8 @@
 import mainHTML from "./atoms/default/server/templates/main.html!text"
 import rp from 'request-promise'
+import fsp from 'fs';
+const fs = fsp.promises
 import moment from 'moment'
-import { writeFileSync } from 'fs'
 
 var categories = [	'manus_detention',
 					'manus_community',
@@ -63,7 +64,7 @@ export async function render() {
 		row.keyDay = (row.event_text!="") ? "TRUE" : "" ;
 	})
 
-    writeFileSync('shared/js/data.json', JSON.stringify(dataset))
+	await fs.writeFile('shared/js/data.json', JSON.stringify(dataset));
 
     return mainHTML;
 
